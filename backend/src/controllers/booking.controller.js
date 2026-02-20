@@ -6,7 +6,8 @@ import ServiceType from "../models/ServiceType.model.js";
 import Staff from "../models/Staff.model.js";
 import User from "../models/User.model.js";
 import { generateSlots } from "../helper/generateSlotes.js";
-import { generateBookingNumber } from "../helper/bookingNumberGenerator.js"
+import { generateBookingNumber } from "../helper/bookingNumberGenerator.js"; 
+
 
 // CREATE BOOKING
 
