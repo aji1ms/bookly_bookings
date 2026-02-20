@@ -6,8 +6,7 @@ import ServiceType from "../models/ServiceType.model.js";
 import Staff from "../models/Staff.model.js";
 import User from "../models/User.model.js";
 import { generateSlots } from "../helper/generateSlotes.js";
-import { generateBookingNumber } from "../helper/bookingNumberGenerator.js"; 
-
+import { bookingNumberGenerator } from "../helper/bookingNumberGenerator.js";
 
 // CREATE BOOKING
 
@@ -96,7 +95,7 @@ export const createBooking = async (req, res) => {
         }
 
         const booking = await Booking.create({
-            bookingNumber: generateBookingNumber(),
+            bookingNumber: bookingNumberGenerator(),
             serviceType,
             business,
             service,

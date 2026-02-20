@@ -30,12 +30,18 @@ export default function SeviceDetails() {
     }, [id]);
 
     const [booking, setBooking] = useState({
-        business: selectedbusiness,
+        business: null,
         service: null,
         staff: null,
         date: "",
         time: ""
     });
+
+    useEffect(() => {
+        if (selectedbusiness) {
+            setBooking(prev => ({ ...prev, business: selectedbusiness }));
+        }
+    }, [selectedbusiness]);
 
     const updateBooking = (field, value) => {
         setBooking(prev => {
