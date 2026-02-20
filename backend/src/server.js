@@ -20,6 +20,7 @@ const server = express();
 const corsOptions = {
     origin: [
         'https://bookly-at4d7f4lh-ajims-ismails-projects.vercel.app',
+        'https://bookly-henna.vercel.app',
         'http://localhost:5173'
     ],
     credentials: true,
