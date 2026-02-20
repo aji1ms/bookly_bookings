@@ -39,14 +39,18 @@ export const createStaff = async (req, res) => {
                         message: "Invalid service ID in services list",
                     });
                 }
+            }
 
-                const serviceExists = await Service.findById(serviceId);
-                if (!serviceExists) {
-                    return res.status(404).json({
-                        success: false,
-                        message: "Service not found in services list",
-                    });
-                }
+            const validServices = await Service.find({
+                _id: { $in: services },
+                business: business,
+            });
+
+            if (validServices.length !== services.length) {
+                return res.status(400).json({
+                    success: false,
+                    message: "One or more services do not belong to this business",
+                });
             }
         }
 
@@ -142,6 +146,53 @@ export const getStaffById = async (req, res) => {
         });
     }
 };
+
+// Get Staff by service id
+
+export const getStaffByService = async (req, res) => {
+    try {
+        const { serviceId } = req.params;
+        const { business } = req.query;
+
+        if (!mongoose.Types.ObjectId.isValid(serviceId)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid service ID",
+            });
+        }
+
+        const filter = {
+            services: serviceId,
+            isAvailable: true,
+        };
+
+        if (business) {
+            if (!mongoose.Types.ObjectId.isValid(business)) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Invalid business ID",
+                });
+            }
+            filter.business = business;
+        }
+
+        const staffList = await Staff.find(filter)
+            .populate("business", "name location")
+            .populate("services", "name duration price");
+
+        return res.status(200).json({
+            success: true,
+            message: "Staff fetched by service successfully",
+            data: staffList,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
+};
+
 
 // UPDATE STAFF
 

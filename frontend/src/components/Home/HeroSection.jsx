@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 
 function HeroSection() {
@@ -36,13 +37,13 @@ function HeroSection() {
 
                     {/* CTAs */}
                     <div className="flex flex-wrap items-center gap-4 mb-14 animate-fade-up" style={{ animationDelay: "300ms" }}>
-                        <a href="#" className="inline-flex items-center justify-center gap-2 text-base font-semibold text-white bg-gray-900 px-9 py-4 rounded-full no-underline hover:bg-gray-800 hover:-translate-y-px hover:shadow-xl transition-all duration-200 w-full sm:w-auto">
+                        <Link to={"/services"} className="inline-flex items-center justify-center gap-2 text-base font-semibold text-white bg-gray-900 px-9 py-4 rounded-full no-underline hover:bg-gray-800 hover:-translate-y-px hover:shadow-xl transition-all duration-200 w-full sm:w-auto">
                             Get started
                             <FaArrowRight />
-                        </a>
-                        <a href="#services" className="inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-900 border border-gray-200 px-7 py-3.5 rounded-full no-underline hover:border-gray-500 hover:bg-gray-50 hover:-translate-y-px transition-all duration-200 w-full sm:w-auto">
+                        </Link>
+                        <Link to={"/services"} className="inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-900 border border-gray-200 px-7 py-3.5 rounded-full no-underline hover:border-gray-500 hover:bg-gray-50 hover:-translate-y-px transition-all duration-200 w-full sm:w-auto">
                             View services
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Social proof */}

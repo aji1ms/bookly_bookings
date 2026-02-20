@@ -20,6 +20,7 @@ export const createBusiness = async (req, res) => {
             const {
                 serviceType,
                 name,
+                description,
                 location,
                 rating,
                 startingPrice,
@@ -27,7 +28,7 @@ export const createBusiness = async (req, res) => {
                 isActive,
             } = req.body;
 
-            if (!serviceType || !name || !location || !startingPrice) {
+            if (!serviceType || !name || !description || !location || !startingPrice) {
                 return res.status(400).json({
                     success: false,
                     message: "Required fields are missing",
@@ -66,6 +67,7 @@ export const createBusiness = async (req, res) => {
             const business = await Business.create({
                 serviceType,
                 name,
+                description,
                 location,
                 rating,
                 startingPrice,
@@ -92,7 +94,24 @@ export const createBusiness = async (req, res) => {
 
 export const getAllBusinesses = async (req, res) => {
     try {
-        const businesses = await Business.find()
+        const { slug } = req.query;
+
+        let filter = {};
+
+        if (slug) {
+            const serviceType = await ServiceType.findOne({ slug });
+
+            if (!serviceType) {
+                return res.status(404).json({
+                    success: false,
+                    message: "Service type not found for the given slug",
+                });
+            }
+
+            filter.serviceType = serviceType._id;
+        }
+
+        const businesses = await Business.find(filter)
             .populate("serviceType", "name slug")
             .sort({ createdAt: -1 });
 
@@ -108,7 +127,6 @@ export const getAllBusinesses = async (req, res) => {
         });
     }
 };
-
 // Get business by ID
 
 export const getBusinessById = async (req, res) => {
@@ -190,6 +208,7 @@ export const updateBusiness = async (req, res) => {
             }
 
             business.name = req.body.name ?? business.name;
+            business.description = req.body.description ?? business.description;
             business.location = req.body.location ?? business.location;
             business.rating = req.body.rating ?? business.rating;
             business.startingPrice =

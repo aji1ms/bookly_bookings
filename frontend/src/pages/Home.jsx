@@ -8,10 +8,8 @@ import StatCard from "../components/common/StatCard";
 import ThreeStepSection from "../components/Home/ThreeStepSection";
 import ServicesSection from "../components/Home/ServicesSection";
 
-/* ── Main App ── */
 export default function HomePage() {
     const [scrolled, setScrolled] = useState(false);
-    const [activeSlot, setActiveSlot] = useState(2);
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 20);
@@ -47,7 +45,6 @@ export default function HomePage() {
                 {/* ── How it works ── */}
                 <ThreeStepSection />
 
-                {/* Divider */}
                 <div className="max-w-6xl mx-auto h-px bg-gray-100" />
 
                 {/* ── Testimonials ── */}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -16,9 +17,9 @@ function Header() {
     }, [menuOpen]);
 
     const navlinks = [
-        { id: 0, label: "Services", href: "/services" },
-        { id: 1, label: "How it works", href: "#how-it-works" },
-        { id: 2, label: "About", href: "#about" }
+        { id: 0, label: "Services", url: "/services", type: "route" },
+        { id: 1, label: "How it works", url: "/#how-it-works", type: "anchor" },
+        { id: 2, label: "About", url: "/about", type: "route" }
     ];
 
     return (
@@ -29,11 +30,11 @@ function Header() {
                 aria-label="Mobile navigation"
             >
                 <div className="flex items-center justify-between mb-12">
-                    <a href="/" className="flex items-center gap-2.5 no-underline" onClick={() => setMenuOpen(false)}>
+                    <Link to="/" className="flex items-center gap-2.5 no-underline" onClick={() => setMenuOpen(false)}>
                         <span className="font-serif-display text-2xl text-gray-900 font-bold">
                             Book<span className="text-gray-500">ly</span>
                         </span>
-                    </a>
+                    </Link>
                     <button
                         className="p-2 rounded-lg text-gray-900 hover:bg-gray-100 transition-colors border-none bg-transparent cursor-pointer"
                         onClick={() => setMenuOpen(false)}
@@ -48,48 +49,72 @@ function Header() {
                 <ul className="list-none flex-1 flex flex-col gap-2 p-0 m-0">
                     {navlinks.map((nav) => (
                         <li key={nav?.id}>
-                            <a
-                                href={nav?.href}
-                                className="block font-serif-display text-3xl text-gray-900 no-underline py-4 border-b border-gray-100 hover:text-gray-500 transition-colors"
-                                onClick={() => setMenuOpen(false)}
-                            >
-                                {nav?.label}
-                            </a>
+                            {nav.type === "anchor" ? (
+                                <a
+                                    href={nav.url}
+                                    className="..."
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {nav.label}
+                                </a>
+                            ) : (
+                                <Link
+                                    to={nav.url}
+                                    className="..."
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {nav.label}
+                                </Link>
+                            )}
                         </li>
                     ))}
                 </ul>
 
                 <div className="pt-8 flex flex-col gap-4">
-                    <a href="#" className="w-full text-center py-4 bg-gray-900 text-white rounded-xl text-base font-semibold no-underline shadow-lg">
+                    <Link to="/services" className="w-full text-center py-4 bg-gray-900 text-white rounded-xl text-base font-semibold no-underline shadow-lg">
                         Book Now
-                    </a>
+                    </Link>
                 </div>
             </nav>
 
             <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-gray-100 transition-all duration-200">
                 <div className="max-w-6xl mx-auto px-6 flex items-center justify-between gap-6" style={{ height: 68 }}>
 
-                    <a href="/" className="flex items-center gap-2.5 no-underline shrink-0">
+                    <Link to="/" className="flex items-center gap-2.5 no-underline shrink-0">
                         <span className="font-serif-display text-3xl text-gray-900 font-bold">
                             Book<span className="text-gray-500">ly</span>
                         </span>
-                    </a>
+                    </Link>
 
                     <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
                         {navlinks.map((nav) => (
                             <li key={nav?.id}>
-                                <a href={nav?.href} className="text-sm font-medium text-gray-500 no-underline hover:text-gray-900 transition-colors duration-200">
-                                    {nav?.label}
-                                </a>
+                                {nav.type === "anchor" ? (
+                                    <a
+                                        href={nav.url}
+                                        className="..."
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        {nav.label}
+                                    </a>
+                                ) : (
+                                    <Link
+                                        to={nav.url}
+                                        className="..."
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        {nav.label}
+                                    </Link>
+                                )}
                             </li>
                         ))}
                     </ul>
 
                     <div className="hidden md:flex items-center gap-3 shrink-0">
-                        <a href="#" className="inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-gray-900 px-5 py-2.5 rounded-full no-underline hover:bg-gray-800 transition-all">
+                        <Link to="/services" className="inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-gray-900 px-5 py-2.5 rounded-full no-underline hover:bg-gray-800 transition-all">
                             Book Now
                             <FaArrowRight size={15} />
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Mobile burger button */}
