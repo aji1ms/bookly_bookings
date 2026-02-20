@@ -94,8 +94,7 @@ export const createBusiness = async (req, res) => {
 
 export const getAllBusinesses = async (req, res) => {
     try {
-        const { slug } = req.query;
-
+        const { slug, search } = req.query;
         let filter = {};
 
         if (slug) {
@@ -109,6 +108,10 @@ export const getAllBusinesses = async (req, res) => {
             }
 
             filter.serviceType = serviceType._id;
+        }
+
+        if (search) {
+            filter.name = { $regex: search, $options: "i" };
         }
 
         const businesses = await Business.find(filter)
@@ -127,6 +130,7 @@ export const getAllBusinesses = async (req, res) => {
         });
     }
 };
+
 // Get business by ID
 
 export const getBusinessById = async (req, res) => {

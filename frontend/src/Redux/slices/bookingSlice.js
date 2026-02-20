@@ -8,6 +8,8 @@ const initialState = {
     error: null
 }
 
+// Create Booking
+
 export const createBookingThunk = createAsyncThunk(
     "bookings/createBooking",
     async ({ serviceType, business, service, staff, user, date, time, totalAmount }, { rejectWithValue }) => {
@@ -29,6 +31,8 @@ export const createBookingThunk = createAsyncThunk(
         }
     }
 )
+
+// Get All Available Slots
 
 export const getAvailableTimeThunk = createAsyncThunk(
     "bookings/availableTime",
@@ -53,6 +57,8 @@ const bookingSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        // CreateBooking
+
         builder.addCase(createBookingThunk.pending, (state) => {
             state.loading = true;
             state.error = null;
@@ -65,6 +71,8 @@ const bookingSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         })
+
+        // Get Available Time
 
         builder.addCase(getAvailableTimeThunk.pending, (state) => {
             state.loading = true;

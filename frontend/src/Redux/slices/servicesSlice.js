@@ -7,6 +7,8 @@ const initialState = {
     error: null
 }
 
+// Get Service By Business ID
+
 export const getserviceByBusinessId = createAsyncThunk(
     "services/getserviceByBusinessId",
     async (businessId, { rejectWithValue }) => {
@@ -24,6 +26,8 @@ const serviceSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        // Get Service By Business ID
+
         builder.addCase(getserviceByBusinessId.pending, (state) => {
             state.loading = true;
             state.error = null;

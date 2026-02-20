@@ -1,8 +1,8 @@
 function Footer() {
     const platform = [
-        { id: 0, label: "Services", href: "#services" },
-        { id: 1, label: "How it works", href: "#how-it-works" },
-        { id: 2, label: "About", href: "#" }
+        { id: 0, label: "Services", href: "/services" },
+        { id: 1, label: "How it works", href: "/#how-it-works" },
+        { id: 2, label: "About", href: "/about" }
     ]
 
     const legals = [

@@ -10,7 +10,6 @@ import { getAllServiceTypesThunk } from "../Redux/slices/servicetypeSlice";
 import { ServiceCardShimmer } from "../components/Shimmer-UI/ServicePageShimmer";
 
 export default function ServicesPage() {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { loading, businessData } = useSelector((state) => state.business)
 

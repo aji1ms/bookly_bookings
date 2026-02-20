@@ -7,6 +7,8 @@ const initialState = {
     error: null,
 };
 
+// Get All Service Types
+
 export const getAllServiceTypesThunk = createAsyncThunk(
     "serviceType/getAllServiceTypes",
     async (_, { rejectWithValue }) => {
@@ -24,6 +26,8 @@ const serviceTypeSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        // Get All Service Types
+
         builder.addCase(getAllServiceTypesThunk.pending, (state) => {
             state.loading = true;
             state.error = null;

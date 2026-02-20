@@ -1,109 +1,93 @@
-import { useState } from "react";
-import { FaRegHeart } from "react-icons/fa";
-import { MdAccessTime, MdOutlineShield } from "react-icons/md";
-import { CiHome } from "react-icons/ci";
+import { FaStar, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
-const ServicesSection = () => {
-    const services = [
-        {
-            icon: <FaRegHeart size={20} />,
-            title: "Wellness & Spa",
-            description: "Holistic treatments designed to restore balance and renew your sense of calm.",
-            tag: "Most popular",
-            delay: "0ms",
-        },
-        {
-            icon: <MdAccessTime size={22} />,
-            title: "Consultation",
-            description: "One-on-one sessions with verified professionals, tailored to your specific needs.",
-            tag: "Expert guided",
-            delay: "80ms",
-        },
-        {
-            icon: <CiHome size={24} />,
-            title: "Home Services",
-            description: "Trusted professionals delivered to your door, on your schedule.",
-            tag: "Flexible",
-            delay: "160ms",
-        },
-        {
-            icon: <MdOutlineShield size={22} />,
-            title: "Coaching & Training",
-            description: "Structured programs built for progress, led by certified coaches.",
-            tag: "Goal-driven",
-            delay: "240ms",
-        },
-    ];
+const RecentBusinesses = ({ services }) => {
+    const navigate = useNavigate();
+
+    if (!services || services.length === 0) return null;
 
     return (
-        <section className="px-6 py-20 bg-gray-50" id="services" aria-label="Our services">
-            <div className="max-w-6xl mx-auto">
-                <div className="mb-14">
-                    <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4 flex items-center gap-2.5">
-                        What we offer
-                        <span className="inline-block h-px w-10 bg-gray-300" />
-                    </p>
-                    <h2 className="font-serif-display text-4xl md:text-5xl font-normal text-gray-900 leading-tight tracking-tight mb-4">
-                        Services built<br />for your life
-                    </h2>
-                    <p className="text-base text-gray-500 leading-relaxed max-w-lg mt-3.5">
-                        From wellness to professional coaching — every service on Bookly is curated for quality.
-                    </p>
+        <section className="py-8 bg-white" id="recent-businesses">
+            <div className="max-w-7xl mx-auto px-6">
+
+                {/* Header */}
+                <div className="flex items-end justify-between mb-8">
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
+                            Recently joined businesses
+                        </h2>
+                        <p className="text-sm text-gray-400 mt-1">Newest establishments on the platform</p>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        <div className="w-px h-6 bg-gray-200 mx-2 hidden sm:block" />
+                        <button
+                            onClick={() => navigate("/services")}
+                            className="group cursor-pointer hidden sm:flex items-center gap-2 text-sm font-bold text-gray-900 hover:opacity-70 transition-all"
+                        >
+                            See all
+                            <FaArrowRight className="group-hover:translate-x-1 transition-transform" size={11} />
+                        </button>
+                    </div>
                 </div>
 
-                {/* Grid Container */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {services.map((service) => {
-                        const [isHovered, setIsHovered] = useState(false);
+                <div
+                    className="flex flex-col sm:flex-row gap-8 sm:gap-6 overflow-x-hidden sm:overflow-x-auto pb-4 no-scrollbar sm:scroll-smooth sm:snap-x sm:snap-mandatory"
+                >
+                    {services.map((service) => (
+                        <div
+                            key={service._id}
+                            onClick={() => navigate(`/services/${service._id}`)}
+                            className="group shrink-0 w-full sm:w-[280px] cursor-pointer sm:snap-start"
+                        >
+                            {/* Card Image */}
+                            <div className="relative w-full aspect-4/3 rounded-3xl overflow-hidden bg-gray-100 mb-4">
+                                <img
+                                    src={service.image}
+                                    alt={service.name}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
+                                    <FaStar className="text-amber-400" size={10} />
+                                    <span className="text-[11px] font-bold text-gray-900">{service?.rating || "New"}</span>
+                                </div>
+                            </div>
 
-                        return (
-                            <div
-                                key={service.title}
-                                className="p-8 border border-gray-200 rounded-2xl bg-white flex flex-col gap-3 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-400 hover:shadow-lg animate-fade-up"
-                                style={{ animationDelay: service.delay }}
-                                onMouseEnter={() => setIsHovered(true)}
-                                onMouseLeave={() => setIsHovered(false)}
-                            >
-                                {/* Icon Box */}
-                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-200 ${isHovered
-                                        ? "bg-gray-900 border-gray-900 text-white"
-                                        : "bg-gray-50 border-gray-200 text-gray-900"
-                                    }`}>
-                                    {service.icon}
+                            {/* Details */}
+                            <div className="px-1">
+                                <div className="flex justify-between items-start mb-1">
+                                    <h3 className="text-lg sm:text-base font-bold text-gray-900 truncate flex-1 group-hover:text-emerald-600 transition-colors">
+                                        {service?.name}
+                                    </h3>
+                                    <span className="text-base sm:text-sm font-bold text-gray-900 ml-2">
+                                        ${service?.price || "40"}
+                                    </span>
                                 </div>
 
-                                <span className="text-xs font-semibold tracking-widest uppercase text-gray-400">
-                                    {service.tag}
-                                </span>
-
-                                <h3 className="font-serif-display text-2xl font-normal text-gray-900 tracking-tight">
-                                    {service.title}
-                                </h3>
-
-                                <p className="text-sm text-gray-500 leading-relaxed flex-1">
-                                    {service.description}
-                                </p>
-
-                                {/* Action Button */}
-                                <button className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-900 bg-transparent border-none cursor-pointer p-0 transition-all duration-200 hover:gap-2.5 font-dm-sans mt-1">
-                                    Book session
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                                        <path
-                                            d="M1 7h12M7 1l6 6-6 6"
-                                            stroke="currentColor"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                </button>
+                                <div className="flex items-center gap-2 text-gray-400 text-xs font-medium">
+                                    <span className="flex items-center gap-1">
+                                        <FaMapMarkerAlt size={10} />
+                                        {service?.location || "Remote"}
+                                    </span>
+                                    <span className="w-1 h-1 bg-gray-300 rounded-full" />
+                                    <span className="truncate">
+                                        {service?.serviceType?.name || "Professional"}
+                                    </span>
+                                </div>
                             </div>
-                        );
-                    })}
+                        </div>
+                    ))}
+
+                    <button
+                        onClick={() => navigate("/services")}
+                        className="sm:hidden w-full py-4 text-center font-bold text-gray-900 border border-gray-200 rounded-2xl active:bg-gray-50"
+                    >
+                        View all businesses
+                    </button>
                 </div>
             </div>
         </section>
     );
 };
 
-export default ServicesSection;
+export default RecentBusinesses;

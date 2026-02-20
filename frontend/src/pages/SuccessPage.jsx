@@ -1,24 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { FaCheckCircle, FaCalendarAlt, FaReceipt, FaPlus } from "react-icons/fa";
-import confetti from "canvas-confetti";
 
 export default function SuccessPage() {
     const navigate = useNavigate();
     const location = useLocation();
     const booking = location.state?.booking;
-    console.log("bookings:", booking)
-
-    const confNumber = `#2025-${Math.random().toString(36).toUpperCase().substring(2, 10)}`;
-
-    useEffect(() => {
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ["#111827", "#10B981", "#FFFFFF"],
-        });
-    }, []);
 
     return (
         <div className="min-h-screen bg-white flex items-center justify-center p-6 antialiased">
@@ -36,9 +23,7 @@ export default function SuccessPage() {
                 <div className="space-y-2">
                     <h1 className="text-4xl md:text-5xl font-serif text-gray-900">Booking Confirmed!</h1>
                     <p className="text-gray-500 font-medium">Your appointment has been successfully scheduled.</p>
-                    <div className="inline-block bg-gray-100 px-4 py-1 rounded-full text-[10px] font-black tracking-widest text-gray-400 uppercase">
-                        Conf: {confNumber}
-                    </div>
+                    <p className="text-gray-500 font-medium">Booking Number: {booking.bookingNumber}</p>
                 </div>
 
                 {/* Booking Summary Card */}
@@ -61,7 +46,7 @@ export default function SuccessPage() {
                             </div>
                             <div>
                                 <p className="text-[9px] font-black uppercase tracking-tighter text-gray-400">Date</p>
-                                <p className="text-sm font-bold">{booking.date}</p>
+                                <p className="text-sm font-bold">{booking.date.split("T")[0]}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">

@@ -7,6 +7,8 @@ const initialState = {
     error: null
 };
 
+// Create User
+
 export const createUserSlice = createAsyncThunk(
     "user/createUser",
     async ({ name, email, phone }, { rejectWithValue }) => {
@@ -25,6 +27,8 @@ export const userSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        // Create User
+
         builder.addCase(createUserSlice.pending, (state) => {
             state.loading = true;
         })

@@ -120,7 +120,6 @@ export const createBooking = async (req, res) => {
             data: populatedBooking,
         });
     } catch (error) {
-        console.log(error)
         if (error.code === 11000) {
             return res.status(409).json({
                 success: false,

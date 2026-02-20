@@ -12,8 +12,6 @@ export default function Checkout() {
     const location = useLocation();
     const bookingFromState = location.state?.booking;
     
-    console.log("booking from state", bookingFromState)
-
     const dispatch = useDispatch()
     const { loading, user } = useSelector((state) => state.users)
 

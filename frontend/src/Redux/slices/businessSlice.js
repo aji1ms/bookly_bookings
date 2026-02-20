@@ -9,13 +9,18 @@ const initialState = {
     selectedbusiness: null,
 }
 
+// Get All Businesses
+
 export const getAllBusinessesThunk = createAsyncThunk(
     "business/getAllBusinesses",
-    async (slug = null, { rejectWithValue }) => {
+    async ({ slug = null, search = "" } = {}, { rejectWithValue }) => {
         try {
-            const url = slug
-                ? `${import.meta.env.VITE_API_URL}/api/businesses?slug=${slug}`
-                : `${import.meta.env.VITE_API_URL}/api/businesses`;
+            const params = new URLSearchParams();
+            if (slug) params.append("slug", slug);
+            if (search.trim()) params.append("search", search.trim());
+
+            const query = params.toString();
+            const url = `${import.meta.env.VITE_API_URL}/api/businesses${query ? `?${query}` : ""}`;
 
             const response = await axios.get(url);
             return { data: response?.data?.data, slug };
@@ -24,6 +29,8 @@ export const getAllBusinessesThunk = createAsyncThunk(
         }
     }
 );
+
+// Get Business By ID
 
 export const getBusinessByIdThunk = createAsyncThunk(
     "business/getBusinessById",
@@ -46,6 +53,8 @@ const businessSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
+        // Get All Businesses
+
         builder.addCase(getAllBusinessesThunk.pending, (state) => {
             state.loading = true;
             state.error = null;
@@ -59,6 +68,8 @@ const businessSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         });
+
+        // Get Business By ID
 
         builder.addCase(getBusinessByIdThunk.fulfilled, (state, action) => {
             state.selectedbusiness = action.payload;

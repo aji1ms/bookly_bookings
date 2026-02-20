@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import CtaBanner from "../components/Home/CtaBanner";
@@ -7,8 +8,12 @@ import HeroSection from "../components/Home/HeroSection";
 import StatCard from "../components/common/StatCard";
 import ThreeStepSection from "../components/Home/ThreeStepSection";
 import ServicesSection from "../components/Home/ServicesSection";
+import { getAllBusinessesThunk } from "../Redux/slices/businessSlice";
+import { RecentServicesShimmer } from "../components/Shimmer-UI/ServicePageShimmer";
 
 export default function HomePage() {
+    const dispatch = useDispatch();
+    const { loading, businessData } = useSelector((state) => state.business);
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -17,13 +22,19 @@ export default function HomePage() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    useEffect(() => {
+        dispatch(getAllBusinessesThunk())
+    }, [dispatch]);
+
+    const recentServices = businessData?.slice(0, 4);
+
     return (
         <div className="font-dm-sans bg-white text-gray-900 antialiased overflow-x-hidden">
             {/* ── Header ── */}
             <Header />
 
             <main>
-                {/* ── Hero ── */}
+                {/* ── Hero Section── */}
                 <HeroSection />
 
                 {/* ── Stats ── */}
@@ -37,12 +48,16 @@ export default function HomePage() {
                 </section>
 
                 {/* ── Services ── */}
-                <ServicesSection />
+                {loading ? (
+                    <RecentServicesShimmer />
+                )
+                    : <ServicesSection services={recentServices} />
+                }
 
                 {/* Divider */}
                 <div className="max-w-6xl mx-auto h-px bg-gray-100" />
 
-                {/* ── How it works ── */}
+                {/* ── Three Step Section ── */}
                 <ThreeStepSection />
 
                 <div className="max-w-6xl mx-auto h-px bg-gray-100" />

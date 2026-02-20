@@ -12,12 +12,8 @@ export default function PaymentPage() {
     const bookingState = location.state?.booking;
     const userState = location.state?.user;
 
-    console.log("booking state", bookingState)
-
     const dispatch = useDispatch();
     const { loading, bookings } = useSelector((state) => state.bookings);
-
-    console.log(" from payment page bookings", bookings)
 
     const [cardData, setCardData] = useState({
         number: "",
@@ -101,7 +97,6 @@ export default function PaymentPage() {
                     state: { booking: result }
                 });
             } catch (error) {
-                console.log(error)
                 toast.error("Something went wrong! please try again", { duration: 2000, position: "top-right" });
             }
         }
