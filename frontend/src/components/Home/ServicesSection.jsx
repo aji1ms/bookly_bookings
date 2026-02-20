@@ -7,84 +7,81 @@ const RecentBusinesses = ({ services }) => {
     if (!services || services.length === 0) return null;
 
     return (
-        <section className="py-8 bg-white" id="recent-businesses">
-            <div className="max-w-7xl mx-auto px-6">
+        <section className="py-10 bg-white" id="recent-businesses">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
                 {/* Header */}
-                <div className="flex items-end justify-between mb-8">
+                <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
                             Recently joined businesses
                         </h2>
                         <p className="text-sm text-gray-400 mt-1">Newest establishments on the platform</p>
                     </div>
-
-                    <div className="flex items-center gap-3">
-                        <div className="w-px h-6 bg-gray-200 mx-2 hidden sm:block" />
-                        <button
-                            onClick={() => navigate("/services")}
-                            className="group cursor-pointer hidden sm:flex items-center gap-2 text-sm font-bold text-gray-900 hover:opacity-70 transition-all"
-                        >
-                            See all
-                            <FaArrowRight className="group-hover:translate-x-1 transition-transform" size={11} />
-                        </button>
-                    </div>
+                    <button
+                        onClick={() => navigate("/services")}
+                        className="group cursor-pointer flex items-center gap-2 text-sm font-bold text-gray-900 hover:opacity-70 transition-all shrink-0"
+                    >
+                        See all
+                        <FaArrowRight className="group-hover:translate-x-1 transition-transform" size={11} />
+                    </button>
                 </div>
 
-                <div
-                    className="flex flex-col sm:flex-row gap-8 sm:gap-6 overflow-x-hidden sm:overflow-x-auto pb-4 no-scrollbar sm:scroll-smooth sm:snap-x sm:snap-mandatory"
-                >
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     {services.map((service) => (
                         <div
                             key={service._id}
                             onClick={() => navigate(`/services/${service._id}`)}
-                            className="group shrink-0 w-full sm:w-[280px] cursor-pointer sm:snap-start"
+                            className="group cursor-pointer"
                         >
-                            {/* Card Image */}
-                            <div className="relative w-full aspect-4/3 rounded-3xl overflow-hidden bg-gray-100 mb-4">
+                            {/* Image */}
+                            <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden bg-gray-100 mb-3">
                                 <img
                                     src={service.image}
                                     alt={service.name}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
+                                {/* Rating badge */}
                                 <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
                                     <FaStar className="text-amber-400" size={10} />
-                                    <span className="text-[11px] font-bold text-gray-900">{service?.rating || "New"}</span>
+                                    <span className="text-[11px] font-bold text-gray-900">
+                                        {service?.rating || "New"}
+                                    </span>
                                 </div>
                             </div>
 
-                            {/* Details */}
-                            <div className="px-1">
-                                <div className="flex justify-between items-start mb-1">
-                                    <h3 className="text-lg sm:text-base font-bold text-gray-900 truncate flex-1 group-hover:text-emerald-600 transition-colors">
+                            {/* Info */}
+                            <div className="px-0.5">
+                                <div className="flex justify-between items-start mb-1 gap-2">
+                                    <h3 className="text-sm font-bold text-gray-900 leading-snug group-hover:text-emerald-600 transition-colors line-clamp-1 flex-1">
                                         {service?.name}
                                     </h3>
-                                    <span className="text-base sm:text-sm font-bold text-gray-900 ml-2">
-                                        ${service?.price || "40"}
+                                    <span className="text-sm font-bold text-gray-900 shrink-0">
+                                        ${service?.startingPrice}
                                     </span>
                                 </div>
 
                                 <div className="flex items-center gap-2 text-gray-400 text-xs font-medium">
-                                    <span className="flex items-center gap-1">
-                                        <FaMapMarkerAlt size={10} />
-                                        {service?.location || "Remote"}
+                                    <span className="flex items-center gap-1 truncate">
+                                        <FaMapMarkerAlt size={9} className="shrink-0" />
+                                        <span className="truncate">{service?.location}</span>
                                     </span>
-                                    <span className="w-1 h-1 bg-gray-300 rounded-full" />
-                                    <span className="truncate">
-                                        {service?.serviceType?.name || "Professional"}
-                                    </span>
+                                    <span className="w-1 h-1 bg-gray-300 rounded-full shrink-0" />
                                 </div>
                             </div>
                         </div>
                     ))}
+                </div>
 
+                <div className="mt-8 sm:hidden">
                     <button
                         onClick={() => navigate("/services")}
-                        className="sm:hidden w-full py-4 text-center font-bold text-gray-900 border border-gray-200 rounded-2xl active:bg-gray-50"
+                        className="w-full py-4 text-center text-sm font-bold text-gray-900 border border-gray-200 rounded-2xl hover:bg-gray-50 transition-colors"
                     >
                         View all businesses
                     </button>
                 </div>
+
             </div>
         </section>
     );
