@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
     serviceTypes: [],
-    loading: true,
+    loading: false,
     error: null,
 };
 

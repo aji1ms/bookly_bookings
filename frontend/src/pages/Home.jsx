@@ -9,7 +9,7 @@ import StatCard from "../components/common/StatCard";
 import ThreeStepSection from "../components/Home/ThreeStepSection";
 import ServicesSection from "../components/Home/ServicesSection";
 import { getAllBusinessesThunk } from "../Redux/slices/businessSlice";
-import { RecentServicesShimmer } from "../components/Shimmer-UI/ServicePageShimmer";
+import { RecentBusinessesShimmer } from "../components/Shimmer-UI/ServicePageShimmer";
 
 export default function HomePage() {
     const dispatch = useDispatch();
@@ -49,7 +49,7 @@ export default function HomePage() {
 
                 {/* ── Services ── */}
                 {loading ? (
-                    <RecentServicesShimmer />
+                    <RecentBusinessesShimmer />
                 )
                     : <ServicesSection services={recentServices} />
                 }

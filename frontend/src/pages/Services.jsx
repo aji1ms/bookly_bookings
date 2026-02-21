@@ -2,7 +2,6 @@ import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import SearchFilterBar from "../components/Service/SearchFilterBar";
 import ServiceCard from "../components/Service/ServiceCard";
-import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllBusinessesThunk } from "../Redux/slices/businessSlice";
