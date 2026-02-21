@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
     const platform = [
         { id: 0, label: "Services", href: "/services" },
@@ -37,12 +39,12 @@ function Footer() {
                                 <ul className="list-none m-0 p-0 flex flex-col gap-2.5">
                                     {section.links.map((link) => (
                                         <li key={link.id}>
-                                            <a
-                                                href={link.href}
+                                            <Link
+                                                to={link.href}
                                                 className="text-sm text-gray-500 no-underline hover:text-gray-900 transition-colors duration-200"
                                             >
                                                 {link.label}
-                                            </a>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>
@@ -55,9 +57,9 @@ function Footer() {
                     <p className="text-xs text-gray-400">© 2026 Bookly. All rights reserved.</p>
                     <div className="flex flex-wrap gap-4">
                         {["Accessibility", "Sitemap", "Contact"].map((item) => (
-                            <a key={item} href="#" className="text-xs text-gray-400 no-underline hover:text-gray-600 transition-colors duration-200">
+                            <Link key={item} to="#" className="text-xs text-gray-400 no-underline hover:text-gray-600 transition-colors duration-200">
                                 {item}
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </div>
