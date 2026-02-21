@@ -8,10 +8,12 @@ import SuccessPage from "./pages/SuccessPage";
 import ReceiptPage from "./pages/ReceiptPage";
 import AboutPage from "./pages/About";
 import Checkout from "./pages/Checkout";
+import ScrollToTop from "./helper/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         <Route path="/" element={<HomePage />} />
