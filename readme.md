@@ -21,15 +21,6 @@ Navigate to the backend directory and set up the environment:
 cd backend
 npm install
 
-Create a .env file in the root of the backend folder and paste the following:
-
-Code snippet
-PORT=3005
-MONGO_URL=mongodb+srv://ajimsismail123_db_user:Eb0V6VMi2eCqRE1S@cluster0.kee7j8c.mongodb.net/?
-CLOUDINARY_CLOUD_NAME=dqijnywnf
-CLOUDINARY_API_KEY=743135479548149
-CLOUDINARY_API_SECRET=QLuTPrtjWDppE1CKEKKbx0BQctI
-
 Start the backend server:
 
 Bash
@@ -45,10 +36,7 @@ Install the dependencies:
 
 Bash
 npm install
-Create a .env file in the root of the frontend folder:
 
-Code snippet
-VITE_API_URL=http://localhost:3005
 Start the frontend development server:
 
 Bash
