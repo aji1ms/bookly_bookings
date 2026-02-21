@@ -82,7 +82,7 @@ export default function ReceiptPage() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="p-4 bg-slate-50 rounded-2xl">
                                         <p className="text-[9px] uppercase font-bold text-slate-400 mb-1">Date</p>
-                                        <p className="text-sm font-bold">{booking.date}</p>
+                                        <p className="text-sm font-bold">{booking.date.split('T')[0]}</p>
                                     </div>
                                     <div className="p-4 bg-slate-50 rounded-2xl">
                                         <p className="text-[9px] uppercase font-bold text-slate-400 mb-1">Time</p>

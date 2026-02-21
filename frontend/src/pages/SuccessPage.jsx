@@ -66,7 +66,7 @@ export default function SuccessPage() {
                     <p className="text-gray-500 font-medium">Your appointment has been successfully scheduled.</p>
                     {booking?.bookingNumber && (
                         <p className="text-sm font-bold text-emerald-600 tracking-widest uppercase">
-                            # {booking.bookingNumber}
+                            {booking.bookingNumber}
                         </p>
                     )}
                 </div>
