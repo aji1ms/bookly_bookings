@@ -27,7 +27,7 @@ export default function DateTimePicker({ date, time, onDateChange, onTimeChange,
         }
     }, [date, staffId, businessId, dispatch]);
 
-    const slots: string[] = availableTime?.data?.availableSlots || [];
+    const slots: string[] = availableTime?.availableSlots || [];
 
     return (
         <section className="animate-fade-up border-t border-gray-100 pt-12">

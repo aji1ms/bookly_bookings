@@ -17,21 +17,20 @@ export interface IBooking {
 }
 
 interface AvailableTimeData {
-    data: {
-        availableSlots: string[];
-    } | null;
+    availableSlots: string[];
+    [key: string]: any;
 }
 
 interface BookingState {
     booking: IBooking | null;
-    availableTime: AvailableTimeData;
+    availableTime: AvailableTimeData | null;
     loading: boolean;
     error: string | null;
 }
 
 const initialState: BookingState = {
     booking: null,
-    availableTime: { data: null },
+    availableTime: null,
     loading: false,
     error: null
 }
@@ -77,7 +76,7 @@ export const getAvailableTimeThunk = createAsyncThunk(
                     businessId
                 }
             });
-            return response.data;
+            return response.data.data;
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const axiosError = error as AxiosError<{ message: string }>;
