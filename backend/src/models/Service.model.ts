@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { IService } from "../types/schemaTypes.js";
 
-const serviceSchema = new mongoose.Schema(
+const serviceSchema = new Schema<IService>(
   {
     business: {
       type: mongoose.Schema.Types.ObjectId,
@@ -36,4 +37,4 @@ const serviceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Service", serviceSchema);
+export default mongoose.model<IService>("Service", serviceSchema);

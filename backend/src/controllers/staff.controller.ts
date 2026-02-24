@@ -1,43 +1,79 @@
 import mongoose from "mongoose";
-import Staff from "../models/Staff.model.js";
-import Business from "../models/Business.model.js";
-import Service from "../models/Service.model.js";
+import { Request, Response } from "express";
+
+import Staff from "../models/Staff.model.ts";
+import Business from "../models/Business.model.ts";
+import Service from "../models/Service.model.ts";
+
+interface CreateStaffBody {
+    business: string;
+    name: string;
+    role?: string;
+    services?: string[];
+    isAvailable?: boolean;
+}
+
+interface UpdateStaffBody {
+    name?: string;
+    role?: string;
+    services?: string[];
+    isAvailable?: boolean;
+}
+
+interface StaffParams {
+    id: string;
+}
+
+interface ServiceParams {
+    serviceId: string;
+}
+
+interface StaffQuery {
+    business?: string;
+}
 
 // CREATE STAFF
 
-export const createStaff = async (req, res) => {
+export const createStaff = async (
+    req: Request<{}, {}, CreateStaffBody>,
+    res: Response
+): Promise<void> => {
     try {
         const { business, name, role, services, isAvailable } = req.body;
 
         if (!business || !name) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Required fields are missing",
             });
+            return;
         }
 
         if (!mongoose.Types.ObjectId.isValid(business)) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Invalid business ID",
             });
+            return;
         }
 
         const businessExists = await Business.findById(business);
         if (!businessExists) {
-            return res.status(404).json({
+            res.status(404).json({
                 success: false,
                 message: "Business not found",
             });
+            return;
         }
 
         if (services && services.length > 0) {
             for (const serviceId of services) {
                 if (!mongoose.Types.ObjectId.isValid(serviceId)) {
-                    return res.status(400).json({
+                    res.status(400).json({
                         success: false,
                         message: "Invalid service ID in services list",
                     });
+                    return;
                 }
             }
 
@@ -47,10 +83,11 @@ export const createStaff = async (req, res) => {
             });
 
             if (validServices.length !== services.length) {
-                return res.status(400).json({
+                res.status(400).json({
                     success: false,
                     message: "One or more services do not belong to this business",
                 });
+                return;
             }
         }
 
@@ -62,13 +99,13 @@ export const createStaff = async (req, res) => {
             isAvailable,
         });
 
-        return res.status(201).json({
+        res.status(201).json({
             success: true,
             message: "Staff created successfully",
             data: staff,
         });
     } catch (error) {
-        return res.status(500).json({
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
@@ -77,17 +114,22 @@ export const createStaff = async (req, res) => {
 
 // GET ALL STAFF
 
-export const getAllStaff = async (req, res) => {
+export const getAllStaff = async (
+    req: Request<{}, {}, {}, StaffQuery>,
+    res: Response
+): Promise<void> => {
     try {
         const { business } = req.query;
 
-        const filter = {};
+        const filter: { business?: string } = {};
+
         if (business) {
             if (!mongoose.Types.ObjectId.isValid(business)) {
-                return res.status(400).json({
+                res.status(400).json({
                     success: false,
                     message: "Invalid business ID",
                 });
+                return;
             }
             filter.business = business;
         }
@@ -97,13 +139,13 @@ export const getAllStaff = async (req, res) => {
             .populate("services", "name duration price")
             .sort({ createdAt: -1 });
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Staff fetched successfully",
             data: staffList,
         });
     } catch (error) {
-        return res.status(500).json({
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
@@ -112,15 +154,19 @@ export const getAllStaff = async (req, res) => {
 
 // GET STAFF BY ID
 
-export const getStaffById = async (req, res) => {
+export const getStaffById = async (
+    req: Request<StaffParams>,
+    res: Response
+): Promise<void> => {
     try {
         const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Invalid staff ID",
             });
+            return;
         }
 
         const staff = await Staff.findById(id)
@@ -128,19 +174,20 @@ export const getStaffById = async (req, res) => {
             .populate("services", "name duration price");
 
         if (!staff) {
-            return res.status(404).json({
+            res.status(404).json({
                 success: false,
                 message: "Staff not found",
             });
+            return;
         }
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Staff fetched successfully",
             data: staff,
         });
     } catch (error) {
-        return res.status(500).json({
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
@@ -149,29 +196,34 @@ export const getStaffById = async (req, res) => {
 
 // Get Staff by service id
 
-export const getStaffByService = async (req, res) => {
+export const getStaffByService = async (
+    req: Request<ServiceParams, {}, {}, StaffQuery>,
+    res: Response
+): Promise<void> => {
     try {
         const { serviceId } = req.params;
         const { business } = req.query;
 
         if (!mongoose.Types.ObjectId.isValid(serviceId)) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Invalid service ID",
             });
+            return;
         }
 
-        const filter = {
+        const filter: { services: string; isAvailable: boolean; business?: string } = {
             services: serviceId,
             isAvailable: true,
         };
 
         if (business) {
             if (!mongoose.Types.ObjectId.isValid(business)) {
-                return res.status(400).json({
+                res.status(400).json({
                     success: false,
                     message: "Invalid business ID",
                 });
+                return;
             }
             filter.business = business;
         }
@@ -180,13 +232,13 @@ export const getStaffByService = async (req, res) => {
             .populate("business", "name location")
             .populate("services", "name duration price");
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Staff fetched by service successfully",
             data: staffList,
         });
     } catch (error) {
-        return res.status(500).json({
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
@@ -196,44 +248,53 @@ export const getStaffByService = async (req, res) => {
 
 // UPDATE STAFF
 
-export const updateStaff = async (req, res) => {
+export const updateStaff = async (
+    req: Request<StaffParams, {}, UpdateStaffBody>,
+    res: Response
+): Promise<void> => {
     try {
         const { id } = req.params;
         const { services } = req.body;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Invalid staff ID",
             });
+            return;
         }
 
         const staff = await Staff.findById(id);
         if (!staff) {
-            return res.status(404).json({
+            res.status(404).json({
                 success: false,
                 message: "Staff not found",
             });
+            return;
         }
 
         if (services && services.length > 0) {
             for (const serviceId of services) {
                 if (!mongoose.Types.ObjectId.isValid(serviceId)) {
-                    return res.status(400).json({
+                    res.status(400).json({
                         success: false,
                         message: "Invalid service ID in services list",
                     });
+                    return;
                 }
 
                 const serviceExists = await Service.findById(serviceId);
                 if (!serviceExists) {
-                    return res.status(404).json({
+                    res.status(404).json({
                         success: false,
                         message: "Service not found in services list",
                     });
+                    return;
                 }
             }
-            staff.services = services;
+            staff.services = services.map(
+                (id) => new mongoose.Types.ObjectId(id)
+            ) as mongoose.Types.ObjectId[];
         }
 
         staff.name = req.body.name ?? staff.name;
@@ -242,13 +303,13 @@ export const updateStaff = async (req, res) => {
 
         await staff.save();
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Staff updated successfully",
             data: staff,
         });
     } catch (error) {
-        return res.status(500).json({
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
@@ -257,33 +318,38 @@ export const updateStaff = async (req, res) => {
 
 // DELETE STAFF
 
-export const deleteStaff = async (req, res) => {
+export const deleteStaff = async (
+    req: Request<StaffParams>,
+    res: Response
+): Promise<void> => {
     try {
         const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Invalid staff ID",
             });
+            return;
         }
 
         const staff = await Staff.findById(id);
         if (!staff) {
-            return res.status(404).json({
+            res.status(404).json({
                 success: false,
                 message: "Staff not found",
             });
+            return;
         }
 
         await staff.deleteOne();
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Staff deleted successfully",
         });
     } catch (error) {
-        return res.status(500).json({
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });

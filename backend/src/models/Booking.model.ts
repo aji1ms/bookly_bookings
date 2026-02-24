@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { IBooking } from "../types/schemaTypes.js";
 
-const bookingSchema = new mongoose.Schema(
+const bookingSchema = new Schema<IBooking>(
   {
     bookingNumber: {
       type: String,
@@ -39,12 +40,12 @@ const bookingSchema = new mongoose.Schema(
     },
 
     date: {
-      type: Date, 
+      type: Date,
       required: true,
     },
 
     time: {
-      type: String, 
+      type: String,
       required: true,
     },
 
@@ -72,4 +73,4 @@ bookingSchema.index(
   { unique: true }
 );
 
-export default mongoose.model("Booking", bookingSchema);
+export default mongoose.model<IBooking>("Booking", bookingSchema);

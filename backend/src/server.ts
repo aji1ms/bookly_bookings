@@ -1,18 +1,19 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import connectDB from './config/db.js';
+import connectDB from './config/db.ts';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import serviceTypeRoutes from './routes/serviceType.routes.js';
-import businessRoutes from './routes/business.routes.js';
-import serviceRoutes from './routes/service.routes.js';
-import staffRoutes from './routes/staff.routes.js';
-import userRoutes from './routes/user.routes.js';
-import bookingRoutes from './routes/booking.routes.js';
+
+import serviceTypeRoutes from './routes/serviceType.routes.ts';
+import businessRoutes from './routes/business.routes.ts';
+import serviceRoutes from './routes/service.routes.ts';
+import staffRoutes from './routes/staff.routes.ts'; 
+import userRoutes from './routes/user.routes.ts';
+import bookingRoutes from './routes/booking.routes.ts';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(__filename); 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const server = express();

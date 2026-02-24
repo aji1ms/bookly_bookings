@@ -1,15 +1,39 @@
 import mongoose from "mongoose";
-import Business from "../models/Business.model.js";
-import ServiceType from "../models/ServiceType.model.js";
-import cloudinary from "../config/cloudinary.js";
-import upload from "../middleware/upload.js";
+import { Request, Response } from "express";
+import { ParamsDictionary } from "express-serve-static-core";
+
+import Business from "../models/Business.model.ts";
+import ServiceType from "../models/ServiceType.model.ts";
+
+import cloudinary from "../config/cloudinary.ts";
+import upload from "../middleware/upload.ts";
+
+interface BusinessBody {
+    serviceType: string;
+    name: string;
+    description: string;
+    location: string;
+    rating?: number;
+    startingPrice: number;
+    serviceCount?: number;
+    isActive?: boolean;
+}
+
+interface BusinessQuery {
+    slug?: string;
+    search?: string;
+}
+
+interface BusinessParams extends ParamsDictionary {
+    id: string;
+}
 
 // Create new business
 
-export const createBusiness = async (req, res) => {
+export const createBusiness = async (req: Request, res: Response): Promise<Response | void> => {
 
-    upload.single("image")(req, res, async (err) => {
-        if (err) {
+    upload.single("image")(req, res, async (err: unknown) => {
+        if (err instanceof Error) {
             return res.status(400).json({
                 success: false,
                 message: err.message,
@@ -92,10 +116,13 @@ export const createBusiness = async (req, res) => {
 
 // Get all businesses
 
-export const getAllBusinesses = async (req, res) => {
+export const getAllBusinesses = async (
+    req: Request<{}, {}, {}, BusinessQuery>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { slug, search } = req.query;
-        let filter = {};
+        const filter: Record<string, unknown> = {};
 
         if (slug) {
             const serviceType = await ServiceType.findOne({ slug });
@@ -133,7 +160,10 @@ export const getAllBusinesses = async (req, res) => {
 
 // Get business by ID
 
-export const getBusinessById = async (req, res) => {
+export const getBusinessById = async (
+    req: Request<BusinessParams>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { id } = req.params;
 
@@ -171,15 +201,13 @@ export const getBusinessById = async (req, res) => {
 
 // Update business
 
-export const updateBusiness = async (req, res) => {
+export const updateBusiness = async (req: Request<BusinessParams>, res: Response): Promise<Response | void> => {
 
-    upload.single("image")(req, res, async (err) => {
-        if (err) {
-            return res.status(400).json({
-                success: false,
-                message: err.message,
-            });
+    upload.single("image")(req, res, async (err: unknown) => {
+        if (err instanceof Error) {
+            return res.status(400).json({ success: false, message: err.message });
         }
+
 
         try {
             const { id } = req.params;
@@ -211,15 +239,15 @@ export const updateBusiness = async (req, res) => {
                 business.image = uploadResult.secure_url;
             }
 
-            business.name = req.body.name ?? business.name;
-            business.description = req.body.description ?? business.description;
-            business.location = req.body.location ?? business.location;
-            business.rating = req.body.rating ?? business.rating;
-            business.startingPrice =
-                req.body.startingPrice ?? business.startingPrice;
-            business.serviceCount =
-                req.body.serviceCount ?? business.serviceCount;
-            business.isActive = req.body.isActive ?? business.isActive;
+            const body = req.body as Partial<BusinessBody>;
+
+            business.name = body.name ?? business.name;
+            business.description = body.description ?? business.description;
+            business.location = body.location ?? business.location;
+            business.rating = body.rating ?? business.rating;
+            business.startingPrice = body.startingPrice ?? business.startingPrice;
+            business.serviceCount = body.serviceCount ?? business.serviceCount;
+            business.isActive = body.isActive ?? business.isActive;
 
             await business.save();
 
@@ -239,7 +267,10 @@ export const updateBusiness = async (req, res) => {
 
 // Delete business
 
-export const deleteBusiness = async (req, res) => {
+export const deleteBusiness = async (
+    req: Request<BusinessParams>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { id } = req.params;
 

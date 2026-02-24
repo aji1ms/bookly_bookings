@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import {
     createStaff,
     getAllStaff,
@@ -6,9 +6,9 @@ import {
     getStaffByService,
     updateStaff,
     deleteStaff,
-} from "../controllers/staff.controller.js";
+} from "../controllers/staff.controller.ts";
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.post("/", createStaff);
 router.get("/", getAllStaff);

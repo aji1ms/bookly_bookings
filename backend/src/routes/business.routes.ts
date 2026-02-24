@@ -1,13 +1,13 @@
-import express from "express";
+import express, { Router } from "express";
 import {
     createBusiness,
     getAllBusinesses,
     getBusinessById,
     updateBusiness,
     deleteBusiness,
-} from "../controllers/business.controller.js";
+} from "../controllers/business.controller.ts";
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.post("/", createBusiness);
 router.get("/", getAllBusinesses);

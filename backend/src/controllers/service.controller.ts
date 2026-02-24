@@ -1,14 +1,36 @@
 import mongoose from "mongoose";
-import Service from "../models/Service.model.js";
-import Business from "../models/Business.model.js";
+import { Request, Response } from "express";
+
+import Service from "../models/Service.model.ts";
+import Business from "../models/Business.model.ts";
+
+interface ServiceBody {
+    business: string;
+    name: string;
+    description?: string;
+    duration: number;
+    price: number;
+    isActive?: boolean;
+}
+
+interface ServiceQuery {
+    business?: string;
+}
+
+interface ServiceParams {
+    id: string;
+}
 
 // CREATE SERVICE
 
-export const createService = async (req, res) => {
+export const createService = async (
+    req: Request<{}, {}, ServiceBody>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { business, name, description, duration, price, isActive } = req.body;
 
-        if (!business || !name || !duration || !price) {
+        if (!business || !name || !description || !duration || !price) {
             return res.status(400).json({
                 success: false,
                 message: "Required fields are missing",
@@ -54,11 +76,15 @@ export const createService = async (req, res) => {
 
 // GET ALL SERVICES 
 
-export const getAllServices = async (req, res) => {
+export const getAllServices = async (
+    req: Request<{}, {}, {}, ServiceQuery>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { business } = req.query;
 
-        const filter = {};
+        const filter: Record<string, unknown> = {};
+
         if (business) {
             if (!mongoose.Types.ObjectId.isValid(business)) {
                 return res.status(400).json({
@@ -88,7 +114,10 @@ export const getAllServices = async (req, res) => {
 
 // GET SERVICE BY ID
 
-export const getServiceById = async (req, res) => {
+export const getServiceById = async (
+    req: Request<ServiceParams>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { id } = req.params;
 
@@ -126,7 +155,10 @@ export const getServiceById = async (req, res) => {
 
 // UPDATE SERVICE
 
-export const updateService = async (req, res) => {
+export const updateService = async (
+    req: Request<ServiceParams, {}, Partial<ServiceBody>>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { id } = req.params;
 
@@ -169,7 +201,10 @@ export const updateService = async (req, res) => {
 
 // DELETE SERVICE
 
-export const deleteService = async (req, res) => {
+export const deleteService = async (
+    req: Request<ServiceParams>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { id } = req.params;
 

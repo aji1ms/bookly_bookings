@@ -1,5 +1,10 @@
-export const generateSlots = (startHour = 9, endHour = 21, interval = 45) => {
-    const slots = [];
+export const generateSlots = (
+    startHour: number = 9,
+    endHour: number = 21,
+    interval: number = 45
+): string[] => {
+    const slots: string[] = [];
+    
     let current = new Date();
     current.setHours(startHour, 0, 0, 0);
 

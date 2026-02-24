@@ -1,8 +1,9 @@
 {
   "type": "module",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "node --watch src/server.js"
+    "build": "esbuild src/server.ts --bundle --platform=node --outfile=dist/server.js --format=esm --packages=external",
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts"
   },
   "dependencies": {
     "cloudinary": "^2.9.0",
@@ -12,5 +13,15 @@
     "mongoose": "^9.2.1",
     "multer": "^2.0.2",
     "nodemon": "^3.1.11"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^25.3.0",
+    "esbuild": "^0.27.3",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

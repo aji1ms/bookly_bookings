@@ -1,13 +1,13 @@
-import express from "express";
+import express, { Router } from "express";
 import {
     createServiceType,
     getAllServiceTypes,
     getServiceTypeById,
     updateServiceType,
     deleteServiceType,
-} from "../controllers/serviceType.controller.js";
+} from "../controllers/serviceType.controller.ts";
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.post("/", createServiceType);
 router.get("/", getAllServiceTypes);

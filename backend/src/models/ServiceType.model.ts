@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { IServiceType } from "../types/schemaTypes.js";
 
-const serviceTypeSchema = new mongoose.Schema(
+const serviceTypeSchema = new Schema<IServiceType>(
     {
         name: {
             type: String,
@@ -23,4 +24,4 @@ const serviceTypeSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export default mongoose.model("ServiceType", serviceTypeSchema);
+export default mongoose.model<IServiceType>("ServiceType", serviceTypeSchema);

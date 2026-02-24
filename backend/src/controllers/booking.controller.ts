@@ -1,13 +1,34 @@
 import mongoose from "mongoose";
-import Booking from "../models/Booking.model.js";
-import Service from "../models/Service.model.js";
-import Business from "../models/Business.model.js";
-import ServiceType from "../models/ServiceType.model.js";
-import Staff from "../models/Staff.model.js";
-import User from "../models/User.model.js";
-import { generateSlots } from "../helper/generateSlotes.js";
+import { Request, Response } from "express";
 
-const bookingNumberGenerator = () => {
+import Booking from "../models/Booking.model.ts";
+import Service from "../models/Service.model.ts";
+import Business from "../models/Business.model.ts";
+import ServiceType from "../models/ServiceType.model.ts";
+import Staff from "../models/Staff.model.ts";
+import User from "../models/User.model.ts";
+
+import { generateSlots } from "../helper/generateSlotes.ts";
+
+interface CreateBookingBody {
+    serviceType: string;
+    business: string;
+    service: string;
+    staff?: string;
+    user: string;
+    date: string; 
+    time: string;
+    totalAmount: number;
+    notes?: string;
+}
+
+interface AvailableSlotsQuery {
+    businessId: string;
+    staffId?: string;
+    date: string;
+}
+
+const bookingNumberGenerator = (): string => {
     const year = new Date().getFullYear();
     const random = Math.random().toString(36).substring(2, 10).toUpperCase();
     return `#${year}-${random}`;
@@ -15,7 +36,10 @@ const bookingNumberGenerator = () => {
 
 // CREATE BOOKING
 
-export const createBooking = async (req, res) => {
+export const createBooking = async (
+    req: Request<{}, {}, CreateBookingBody>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const {
             serviceType,
@@ -36,7 +60,7 @@ export const createBooking = async (req, res) => {
             });
         }
 
-        const idsToValidate = [serviceType, business, service, user];
+        const idsToValidate: string[] = [serviceType, business, service, user];
         if (staff) idsToValidate.push(staff);
 
         for (const id of idsToValidate) {
@@ -124,8 +148,8 @@ export const createBooking = async (req, res) => {
             message: "Booking confirmed",
             data: populatedBooking,
         });
-    } catch (error) {
-        if (error.code === 11000) {
+    } catch (error: unknown) {
+        if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
             return res.status(409).json({
                 success: false,
                 message: "Time slot already booked",
@@ -141,7 +165,10 @@ export const createBooking = async (req, res) => {
 
 // GET AVAILABLE TIME SLOTS 
 
-export const getAvailableSlots = async (req, res) => {
+export const getAvailableSlots = async (
+    req: Request<{}, {}, {}, AvailableSlotsQuery>,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { businessId, staffId, date } = req.query;
 
@@ -179,7 +206,7 @@ export const getAvailableSlots = async (req, res) => {
             });
         }
 
-        const allSlots = generateSlots(9, 21, 45);
+        const allSlots: string[] = generateSlots(9, 21, 45);
 
         //  CASE 1: Specific Staff Selected
 
@@ -267,7 +294,7 @@ export const getAvailableSlots = async (req, res) => {
             status: "confirmed",
         }).select("time staff");
 
-        const bookingCountMap = {};
+        const bookingCountMap: Record<string, number> = {};
 
         bookings.forEach((booking) => {
             bookingCountMap[booking.time] =
@@ -307,8 +334,6 @@ export const getAvailableSlots = async (req, res) => {
             },
         });
     } catch (error) {
-        console.error("Get Available Slots Error:", error);
-
         return res.status(500).json({
             success: false,
             message: "Internal server error",

@@ -1,26 +1,42 @@
-import ServiceType from "../models/ServiceType.model.js";
+import { Request, Response } from "express";
 import mongoose from "mongoose";
+import ServiceType from "../models/ServiceType.model.ts";
+
+interface ServiceTypeBody {
+    name: string;
+    slug: string;
+    isActive?: boolean;
+}
+
+interface ServiceTypeParams {
+    id: string;
+}
 
 // Create new service type
 
-export const createServiceType = async (req, res) => {
+export const createServiceType = async (
+    req: Request<{}, {}, ServiceTypeBody>,
+    res: Response
+): Promise<void> => {
     try {
         const { name, slug, isActive } = req.body;
 
         if (!name || !slug) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Name and slug are required",
-            }); 
+            });
+            return;
         }
 
         const existing = await ServiceType.findOne({ slug });
 
         if (existing) {
-            return res.status(409).json({
+            res.status(409).json({
                 success: false,
                 message: "Service type with this slug already exists",
             });
+            return;
         }
 
         const serviceType = await ServiceType.create({
@@ -29,103 +45,114 @@ export const createServiceType = async (req, res) => {
             isActive,
         });
 
-        return res.status(201).json({
+        res.status(201).json({
             success: true,
             message: "Service type created successfully",
             data: serviceType,
         });
-    } catch (error) {
-        return res.status(500).json({
+    } catch (error: unknown) {
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
     }
 };
 
-//  Get all service types
+// Get all service types
 
-export const getAllServiceTypes = async (req, res) => {
+export const getAllServiceTypes = async (req: Request, res: Response): Promise<void> => {
     try {
         const serviceTypes = await ServiceType.find().sort({ createdAt: -1 });
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Service types fetched successfully",
             data: serviceTypes,
         });
-    } catch (error) {
-        return res.status(500).json({
+    } catch (error: unknown) {
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
     }
 };
 
-//   Get single service type by ID
+// Get single service type by ID
 
-export const getServiceTypeById = async (req, res) => {
+export const getServiceTypeById = async (
+    req: Request<ServiceTypeParams>,
+    res: Response
+): Promise<void> => {
     try {
         const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Invalid service type ID",
             });
+            return;
         }
 
         const serviceType = await ServiceType.findById(id);
 
         if (!serviceType) {
-            return res.status(404).json({
+            res.status(404).json({
                 success: false,
                 message: "Service type not found",
             });
+            return;
         }
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Service type fetched successfully",
             data: serviceType,
         });
-    } catch (error) {
-        return res.status(500).json({
+    } catch (error: unknown) {
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
     }
 };
 
-//  Update service type
+// Update service type
 
-export const updateServiceType = async (req, res) => {
+export const updateServiceType = async (
+    req: Request<ServiceTypeParams, {}, Partial<ServiceTypeBody>>,
+    res: Response
+): Promise<void> => {
     try {
         const { id } = req.params;
         const { name, slug, isActive } = req.body;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Invalid service type ID",
             });
+            return;
         }
 
         const serviceType = await ServiceType.findById(id);
 
         if (!serviceType) {
-            return res.status(404).json({
+            res.status(404).json({
                 success: false,
                 message: "Service type not found",
             });
+            return;
         }
 
         if (slug && slug !== serviceType.slug) {
             const slugExists = await ServiceType.findOne({ slug });
             if (slugExists) {
-                return res.status(409).json({
+                res.status(409).json({
                     success: false,
                     message: "Slug already in use",
                 });
+                return;
             }
         }
 
@@ -135,49 +162,54 @@ export const updateServiceType = async (req, res) => {
 
         await serviceType.save();
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Service type updated successfully",
             data: serviceType,
         });
-    } catch (error) {
-        return res.status(500).json({
+    } catch (error: unknown) {
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
     }
 };
 
-//   Delete service type
+// Delete service type
 
-export const deleteServiceType = async (req, res) => {
+export const deleteServiceType = async (
+    req: Request<ServiceTypeParams>,
+    res: Response
+): Promise<void> => {
     try {
         const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Invalid service type ID",
             });
+            return;
         }
 
         const serviceType = await ServiceType.findById(id);
 
         if (!serviceType) {
-            return res.status(404).json({
+            res.status(404).json({
                 success: false,
                 message: "Service type not found",
             });
+            return;
         }
 
         await serviceType.deleteOne();
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Service type deleted successfully",
         });
-    } catch (error) {
-        return res.status(500).json({
+    } catch (error: unknown) {
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });

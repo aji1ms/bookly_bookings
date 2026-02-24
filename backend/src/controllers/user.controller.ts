@@ -1,16 +1,28 @@
-import User from "../models/User.model.js";
+import { Request, Response } from "express";
+
+import User from "../models/User.model.ts";
+
+interface CreateUserBody {
+    name: string;
+    email: string;
+    phone: string;
+}
 
 // CREATE USER 
 
-export const createUser = async (req, res) => {
+export const createUser = async (
+    req: Request<{}, {}, CreateUserBody>,
+    res: Response
+): Promise<void> => {
     try {
         const { name, email, phone } = req.body;
 
         if (!name || !email || !phone) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: "Required fields are missing",
             });
+            return
         }
 
         const user = await User.create({
@@ -19,13 +31,13 @@ export const createUser = async (req, res) => {
             phone,
         });
 
-        return res.status(201).json({
+        res.status(201).json({
             success: true,
             message: "User created successfully",
             data: user,
         });
     } catch (error) {
-        return res.status(500).json({
+        res.status(500).json({
             success: false,
             message: "Internal server error",
         });
