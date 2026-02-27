@@ -21,7 +21,7 @@ export default function ServicesPage() {
     }, [dispatch]);
 
     return (
-        <div className="font-dm-sans bg-white text-gray-900 antialiased min-h-screen">
+        <div className="font-dm-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-white antialiased min-h-screen">
             {/* Header */}
             <Header />
             <main>

@@ -3,10 +3,10 @@ import { IService } from "../../Redux/slices/servicesSlice";
 
 export default function ServiceList({ services, selectedServiceId, onSelect }: { services: IService[], selectedServiceId: string | undefined, onSelect: (service: IService) => void }) {
     return (
-        <section className="animate-fade-up">
+        <section className="animate-fade-up ">
             <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
-                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-900 text-white text-xs font-bold">1</span>
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900 text-xs font-bold">1</span>
                     <h2 className="text-2xl font-semibold tracking-tight">Select Service</h2>
                 </div>
                 {selectedServiceId && (
@@ -16,7 +16,7 @@ export default function ServiceList({ services, selectedServiceId, onSelect }: {
                 )}
             </div>
 
-            <div className="grid gap-4">
+            <div className="grid gap-4 ">
                 {services.map((svc) => {
                     const isSelected = selectedServiceId === svc._id;
 
@@ -24,19 +24,19 @@ export default function ServiceList({ services, selectedServiceId, onSelect }: {
                         <div
                             key={svc._id}
                             onClick={() => onSelect(svc)}
-                            className={`group p-6 border-2 rounded-2xl transition-all duration-300 flex justify-between items-start gap-4 ${isSelected
-                                ? "border-gray-900 bg-white shadow-xl"
-                                : "border-gray-100 bg-white hover:border-gray-300"
+                            className={`group p-6 border-2 rounded-2xl transition-all duration-300 flex justify-between items-start gap-4 dark:bg-gray-800 ${isSelected
+                                ? "border-gray-900 bg-white shadow-xl dark:border-gray-100 dark:bg-gray-100 dark:text-gray-900"
+                                : "border-gray-100 bg-white hover:border-gray-300 dark:text-gray-900 dark:border-gray-900 dark:hover:border-gray-700"
                                 }`}
                         >
                             <div className="flex-1">
-                                <h3 className="text-lg font-bold text-gray-900 mb-1">{svc?.name}</h3>
-                                <p className="text-sm text-gray-500">{svc?.description}</p>
+                                <h3 className="text-lg font-bold text-gray-900 mb-1 dark:text-gray-100">{svc?.name}</h3>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">{svc?.description}</p>
                                 <div className="flex items-center gap-4 mt-4 text-xs font-medium">
                                     <span className="text-gray-400 flex items-center gap-1">
                                         <FaRegClock /> {svc?.duration} min
                                     </span>
-                                    <span className="text-gray-900 font-bold text-sm bg-gray-100 px-3 py-1 rounded-full">
+                                    <span className="text-gray-900 font-bold text-sm bg-gray-100 px-3 py-1 rounded-full dark:bg-gray-900 dark:text-gray-100">
                                         $ {svc?.price}
                                     </span>
                                 </div>
@@ -45,7 +45,7 @@ export default function ServiceList({ services, selectedServiceId, onSelect }: {
                             <button
                                 className={`shrink-0 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer ${isSelected
                                     ? "bg-gray-900 text-white"
-                                    : "bg-white text-gray-400 border border-gray-200 group-hover:border-gray-900 group-hover:text-gray-900"
+                                    : "bg-white text-gray-400 border border-gray-200 group-hover:border-gray-900 group-hover:text-gray-900 dark:text-gray-900"
                                     }`}
                             >
                                 {isSelected ? "Selected" : "Select"}

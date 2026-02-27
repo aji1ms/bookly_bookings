@@ -8,20 +8,20 @@ const RecentBusinesses = ({ services }: { services: IBusiness[] }) => {
     if (!services || services.length === 0) return null;
 
     return (
-        <section className="py-10 bg-white" id="recent-businesses">
+        <section className="py-10 bg-white dark:bg-gray-900" id="recent-businesses">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">
                             Recently joined businesses
                         </h2>
-                        <p className="text-sm text-gray-400 mt-1">Newest establishments on the platform</p>
+                        <p className="text-sm text-gray-400 mt-1 dark:text-gray-400">Newest establishments on the platform</p>
                     </div>
                     <button
                         onClick={() => navigate("/services")}
-                        className="group cursor-pointer flex items-center gap-2 text-sm font-bold text-gray-900 hover:opacity-70 transition-all shrink-0"
+                        className="group cursor-pointer flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white hover:opacity-70 transition-all shrink-0"
                     >
                         See all
                         <FaArrowRight className="group-hover:translate-x-1 transition-transform" size={11} />
@@ -54,10 +54,10 @@ const RecentBusinesses = ({ services }: { services: IBusiness[] }) => {
                             {/* Info */}
                             <div className="px-0.5">
                                 <div className="flex justify-between items-start mb-1 gap-2">
-                                    <h3 className="text-sm font-bold text-gray-900 leading-snug group-hover:text-emerald-600 transition-colors line-clamp-1 flex-1">
+                                    <h3 className="text-sm font-bold text-gray-900 dark:text-white leading-snug group-hover:text-emerald-600 transition-colors line-clamp-1 flex-1">
                                         {service?.name}
                                     </h3>
-                                    <span className="text-sm font-bold text-gray-900 shrink-0">
+                                    <span className="text-sm font-bold text-gray-900 dark:text-white shrink-0">
                                         ${service?.startingPrice}
                                     </span>
                                 </div>

@@ -26,14 +26,14 @@ export default function HomePage() {
     return (
         <div className="font-dm-sans bg-white text-gray-900 antialiased overflow-x-hidden">
             {/* ── Header ── */}
-            <Header /> 
+            <Header />
 
             <main>
                 {/* ── Hero Section── */}
                 <HeroSection />
 
                 {/* ── Stats ── */}
-                <section className="px-6 pb-20" aria-label="Key statistics">
+                <section className="px-6 pb-20 dark:bg-gray-900" aria-label="Key statistics">
                     <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-gray-200 border border-gray-200 rounded-2xl overflow-hidden">
                         <StatCard value={2400} suffix="+" label="Sessions booked monthly" delay="0ms" />
                         <StatCard value={98} suffix="%" label="Client satisfaction rate" delay="100ms" />

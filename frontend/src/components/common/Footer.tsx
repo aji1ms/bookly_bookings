@@ -35,12 +35,12 @@ function Footer() {
         { title: "Legal", links: legals }
     ];
     return (
-        <footer className="bg-gray-50 border-t border-gray-200 px-6 pt-12 pb-8" role="contentinfo">
+        <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 px-6 pt-12 pb-8" role="contentinfo">
             <div className="max-w-6xl mx-auto">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-8 mb-10">
                     <div>
                         <a href="/" className="flex items-center gap-2.5 no-underline mb-3">
-                            <span className="font-serif-display text-lg text-gray-900">Bookly</span>
+                            <span className="font-serif-display text-lg text-gray-900 dark:text-white">Bookly</span>
                         </a>
                         <p className="text-sm text-gray-400 max-w-xs leading-snug">
                             Thoughtful booking for the modern professional. Calm by design.
@@ -58,7 +58,7 @@ function Footer() {
                                         <li key={link.id}>
                                             <Link
                                                 to={link.href}
-                                                className="text-sm text-gray-500 no-underline hover:text-gray-900 transition-colors duration-200"
+                                                className="text-sm text-gray-500 no-underline hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-400 transition-colors duration-200"
                                             >
                                                 {link.label}
                                             </Link>

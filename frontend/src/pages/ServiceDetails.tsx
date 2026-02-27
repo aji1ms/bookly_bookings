@@ -76,7 +76,7 @@ export default function SeviceDetails() {
     }, [booking.service?._id, dispatch]);
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white dark:bg-gray-900">
             {loading ? (
                 <HeroSectionShimmer />
             ) : (
@@ -119,7 +119,7 @@ export default function SeviceDetails() {
                         {booking.time && (
                             <button
                                 onClick={() => navigate("/booking/checkout", { state: { booking } })}
-                                className="w-full cursor-pointer bg-gray-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-black transition-colors shadow-xl animate-fade-up">
+                                className="w-full cursor-pointer bg-gray-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-black transition-colors shadow-xl animate-fade-up dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-300 dark:hover:text-gray-800">
                                 Confirm Booking
                             </button>
                         )}

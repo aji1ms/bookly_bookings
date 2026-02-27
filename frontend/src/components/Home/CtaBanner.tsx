@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 function CtaBanner() {
     return (
-        <section className="px-6 pb-20" aria-label="Call to action">
+        <section className="px-6 pb-20 dark:bg-gray-900" aria-label="Call to action">
             <div className="max-w-6xl mx-auto">
-                <div className="bg-gray-900 rounded-3xl px-12 py-16 text-center relative overflow-hidden">
+                <div className="bg-gray-900 dark:bg-gray-800 rounded-3xl px-12 py-16 text-center relative overflow-hidden">
                     <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                         <div className="absolute w-[500px] h-[500px] rounded-full border border-white/5 -top-48 left-1/2 -translate-x-1/2" />
                         <div className="absolute w-72 h-72 rounded-full border border-white/5 -bottom-24 -right-12" />

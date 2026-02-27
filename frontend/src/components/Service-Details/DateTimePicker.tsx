@@ -32,11 +32,11 @@ export default function DateTimePicker({ date, time, onDateChange, onTimeChange,
     return (
         <section className="animate-fade-up border-t border-gray-100 pt-12">
             <div className="flex items-center gap-3 mb-8">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-900 text-white text-xs font-bold">3</span>
-                <h2 className="text-2xl font-semibold tracking-tight">Pick Date & Slot</h2>
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-900 text-white text-xs font-bold dark:bg-gray-100 dark:text-gray-900">3</span>
+                <h2 className="text-2xl font-semibold tracking-tight dark:text-gray-100">Pick Date & Slot</h2>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-3xl border border-gray-100">
+            <div className="bg-gray-50 p-6 rounded-3xl border border-gray-100 dark:bg-gray-900 dark:border-gray-900">
                 <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 block">
                     Choose a Date
                 </label>
@@ -60,7 +60,7 @@ export default function DateTimePicker({ date, time, onDateChange, onTimeChange,
                                 {Array.from({ length: 8 }).map((_, i) => (
                                     <div
                                         key={i}
-                                        className="py-4 rounded-2xl bg-gray-200 animate-pulse h-14"
+                                        className="py-4 rounded-2xl bg-gray-200 animate-pulse h-14 dark:bg-gray-700"
                                     />
                                 ))}
                             </div>
@@ -74,9 +74,9 @@ export default function DateTimePicker({ date, time, onDateChange, onTimeChange,
                                     <button
                                         key={slot}
                                         onClick={() => onTimeChange(slot)}
-                                        className={`py-4 cursor-pointer rounded-2xl text-sm font-bold transition-all border-2 ${time === slot
-                                            ? "bg-gray-900 text-white border-gray-900 shadow-lg"
-                                            : "bg-white text-gray-700 border-gray-100 hover:border-gray-900"
+                                        className={`py-4 cursor-pointer rounded-2xl text-sm font-bold transition-all border-2 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 ${time === slot
+                                            ? "bg-gray-900 text-white border-gray-900 shadow-lg dark:bg-gray-100 dark:ring-2 dark:ring-gray-100"
+                                            : "bg-white text-gray-700 border-gray-100 hover:border-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100"
                                             }`}
                                     >
                                         {slot}

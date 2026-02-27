@@ -100,7 +100,7 @@ export default function Checkout() {
     };
 
     return (
-        <div className="min-h-screen bg-[#FAFAFA] text-gray-900 font-sans antialiased pb-20">
+        <div className="min-h-screen bg-[#FAFAFA] text-gray-900 font-sans antialiased pb-20 dark:bg-gray-900">
             <nav className="p-6 max-w-5xl mx-auto flex items-center justify-between">
                 <button
                     onClick={() => navigate(-1)}
@@ -108,16 +108,16 @@ export default function Checkout() {
                 >
                     <FaChevronLeft size={12} /> Back
                 </button>
-                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
-                    <FaLock className="text-emerald-500" /> Secure Checkout
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-300">
+                    <FaLock className="text-emerald-500 dark:text-emerald-500" /> Secure Checkout
                 </div>
             </nav>
 
             <main className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-12 mt-8">
                 <div className="lg:col-span-3 space-y-8">
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-serif mb-2 text-gray-900">Finalize Booking</h1>
-                        <p className="text-gray-500">Please provide your contact details to secure your slot.</p>
+                        <h1 className="text-3xl md:text-4xl font-serif mb-2 text-gray-900 dark:text-gray-300">Finalize Booking</h1>
+                        <p className="text-gray-500 dark:text-gray-400">Please provide your contact details to secure your slot.</p>
                     </div>
 
                     <form onSubmit={handleNext} className="space-y-6">
@@ -132,7 +132,7 @@ export default function Checkout() {
                                         value={userData.fullName}
                                         onChange={handleChange}
                                         placeholder="John Doe"
-                                        className={`w-full pl-12 pr-4 py-4 bg-white border ${error.nameError ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-100'} rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all font-medium`}
+                                        className={`w-full pl-12 pr-4 py-4 bg-white border dark:bg-gray-900 dark:text-gray-300 ${error.nameError ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-100'} rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all font-medium`}
                                     />
                                 </div>
                                 {error.nameError && <p className="text-red-500 text-xs mt-1.5 ml-2 font-semibold">{error.nameError}</p>}
@@ -150,7 +150,7 @@ export default function Checkout() {
                                             value={userData.email}
                                             onChange={handleChange}
                                             placeholder="john@example.com"
-                                            className={`w-full pl-12 pr-4 py-4 bg-white border ${error.emailError ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-100'} rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all font-medium`}
+                                            className={`w-full pl-12 pr-4 py-4 bg-white border dark:bg-gray-900 dark:text-gray-300 ${error.emailError ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-100'} rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all font-medium`}
                                         />
                                     </div>
                                     {error.emailError && <p className="text-red-500 text-xs mt-1.5 ml-2 font-semibold">{error.emailError}</p>}
@@ -167,7 +167,7 @@ export default function Checkout() {
                                             value={userData.phone}
                                             onChange={handleChange}
                                             placeholder="+1 (555) 000-0000"
-                                            className={`w-full pl-12 pr-4 py-4 bg-white border ${error.phoneError ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-100'} rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all font-medium`}
+                                            className={`w-full pl-12 pr-4 py-4 bg-white border dark:bg-gray-900 dark:text-gray-300 ${error.phoneError ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-100'} rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all font-medium`}
                                         />
                                     </div>
                                     {error.phoneError && <p className="text-red-500 text-xs mt-1.5 ml-2 font-semibold">{error.phoneError}</p>}
@@ -183,7 +183,7 @@ export default function Checkout() {
                                     value={userData.notes}
                                     onChange={handleChange}
                                     placeholder="Any allergies or specific preferences..."
-                                    className={`w-full p-4 bg-white border ${error.notesError ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-100'} rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all font-medium resize-none`}
+                                    className={`w-full p-4 bg-white border dark:bg-gray-900 dark:placeholder-gray-400 ${error.notesError ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-100'} rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all font-medium resize-none`}
                                 />
                                 {error.notesError && <p className="text-red-500 text-xs mt-1.5 ml-2 font-semibold">{error.notesError}</p>}
                             </div>
@@ -192,7 +192,7 @@ export default function Checkout() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full cursor-pointer bg-gray-900 text-white py-6 rounded-3xl font-bold text-lg hover:bg-black transition-all shadow-xl hover:-translate-y-1 active:translate-y-0"
+                            className="w-full cursor-pointer bg-gray-900 text-white py-6 rounded-3xl font-bold text-lg hover:bg-black transition-all shadow-xl hover:-translate-y-1 active:translate-y-0 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
                             {loading ? (
                                 <div className="flex items-center justify-center gap-2">

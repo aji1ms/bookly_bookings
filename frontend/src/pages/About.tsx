@@ -46,18 +46,18 @@ export default function AboutPage() {
     const steps: string[] = ['Explore Services', 'Select Your Expert', 'Pick Your Slot', 'Show Up & Enjoy']
 
     return (
-        <div className="min-h-screen bg-white text-gray-900 antialiased font-sans">
+        <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 antialiased font-sans">
             <Header />
 
             <section className="relative pt-32 pb-20 px-6 border-b border-gray-100">
                 <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="space-y-8">
-                        <h1 className="text-5xl md:text-7xl font-serif leading-tight tracking-tighter">
+                        <h1 className="text-5xl md:text-7xl dark:text-white font-serif leading-tight tracking-tighter">
                             Redefining <br />
                             <span className="text-gray-400 italic font-normal underline decoration-1 underline-offset-8">Convenience</span> In
                             Professional Services.
                         </h1>
-                        <p className="text-xl text-gray-500 max-w-md leading-relaxed">
+                        <p className="text-xl text-gray-500 dark:text-gray-400 max-w-md leading-relaxed">
                             Bookly is the bridge between premium service providers and clients who value time, quality, and seamless experiences.
                         </p>
                     </div>
@@ -74,7 +74,7 @@ export default function AboutPage() {
             </section>
 
             {/* 2. STATS BAR */}
-            <section className="bg-gray-900 py-16">
+            <section className="bg-gray-900 py-16 border-b border-gray-100">
                 <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
                     {stats.map((stat, i) => (
                         <div key={i} className="text-center">
@@ -86,20 +86,20 @@ export default function AboutPage() {
             </section>
 
             {/* 3. CORE PILLARS OF BOOKLY */}
-            <section className="py-24 max-w-6xl mx-auto px-6">
+            <section className="dark:bg-gray-900 py-24 max-w-6xl mx-auto px-6">
                 <div className="mb-20">
-                    <h2 className="text-3xl font-serif">Why Bookly?</h2>
-                    <div className="w-20 h-1 bg-gray-900 mt-4"></div>
+                    <h2 className="text-3xl font-serif dark:text-white">Why Bookly?</h2>
+                    <div className="w-20 h-1 bg-gray-900 dark:bg-gray-100 mt-4"></div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                     {pillars.map((p, i) => (
-                        <div key={i} className="space-y-6">
+                        <div key={i} className="space-y-6 dark:text-white">
                             <div className="w-14 h-14 bg-gray-50 flex items-center justify-center rounded-2xl text-gray-900 border border-gray-100">
                                 {p.icon}
                             </div>
                             <h3 className="text-xl font-bold">{p.title}</h3>
-                            <p className="text-gray-500 text-sm leading-relaxed">
+                            <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                                 {p.description}
                             </p>
                         </div>
@@ -108,16 +108,16 @@ export default function AboutPage() {
             </section>
 
             {/* 4. THE BOOKING FLOW SECTION */}
-            <section className="bg-[#FAFAFA] py-24 px-6 border-y border-gray-100">
+            <section className="bg-[#FAFAFA] py-24 px-6 border-y border-gray-100 dark:bg-gray-900">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
                     <div className="flex-1 space-y-6">
-                        <h2 className="text-4xl font-serif">Seamlessly Simple.</h2>
-                        <p className="text-gray-500">We've distilled the booking process into four effortless steps designed for the modern user.</p>
+                        <h2 className="text-4xl font-serif dark:text-white">Seamlessly Simple.</h2>
+                        <p className="text-gray-500 dark:text-gray-400">We've distilled the booking process into four effortless steps designed for the modern user.</p>
 
                         <ul className="space-y-4">
                             {steps.map((step, i) => (
-                                <li key={i} className="flex items-center gap-4 text-sm font-bold text-gray-700">
-                                    <span className="w-6 h-6 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">{i + 1}</span>
+                                <li key={i} className="flex items-center gap-4 text-sm font-bold text-gray-700 dark:text-gray-400">
+                                    <span className="w-6 h-6 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px] dark:bg-gray-100 dark:text-gray-900">{i + 1}</span>
                                     {step}
                                 </li>
                             ))}
@@ -145,20 +145,20 @@ export default function AboutPage() {
             </section>
 
             {/* 5. CALL TO ACTION */}
-            <section className="py-32 text-center px-6">
+            <section className="dark:bg-gray-900 py-32 text-center px-6">
                 <div className="max-w-2xl mx-auto space-y-10">
-                    <h2 className="text-4xl md:text-6xl font-serif">Your next experience <br /> starts here.</h2>
-                    <p className="text-gray-500 text-lg font-medium">
+                    <h2 className="text-4xl md:text-6xl font-serif dark:text-white">Your next experience <br /> starts here.</h2>
+                    <p className="text-gray-500 text-lg font-medium dark:text-gray-400">
                         Join thousands of users who have found their favorite professionals through Bookly.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <button
                             onClick={() => navigate("/services")}
-                            className="px-10 py-5 bg-gray-900 text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-black transition-all flex items-center justify-center gap-2 cursor-pointer"
+                            className="px-10 py-5 bg-gray-900 text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-black transition-all flex items-center justify-center gap-2 cursor-pointer dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white border dark:border-gray-100"
                         >
                             Browse All Services <FaArrowRight size={10} />
                         </button>
-                        <button className="px-10 py-5 border border-gray-200 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-gray-50 transition-all cursor-pointer">
+                        <button className="px-10 py-5 border border-gray-200 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-gray-50 transition-all cursor-pointer dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white">
                             List Your Business
                         </button>
                     </div>

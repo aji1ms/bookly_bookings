@@ -27,19 +27,19 @@ export default function ReceiptPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#F8F9FA] py-16 px-6 font-sans text-slate-900">
+        <div className="min-h-screen bg-[#F8F9FA] py-16 px-6 font-sans text-slate-900 dark:bg-gray-900 dark:text-gray-300">
             {/* Action Bar */}
             <div className="max-w-3xl mx-auto mb-10 flex justify-between items-center print:hidden">
                 <button
                     onClick={() => navigate("/")}
-                    className="group cursor-pointer flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-slate-900 transition-all"
+                    className="group cursor-pointer flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-slate-900 transition-all dark:text-gray-300 dark:hover:text-gray-100"
                 >
                     <FaChevronLeft className="group-hover:-translate-x-1 transition-transform" />
                     Exit to Dashboard
                 </button>
                 <button
                     onClick={handlePrint}
-                    className="flex cursor-pointer items-center gap-3 px-6 py-3 bg-slate-900 text-white rounded-2xl hover:bg-slate-800 transition-all shadow-lg shadow-slate-200"
+                    className="flex cursor-pointer items-center gap-3 px-6 py-3 bg-slate-900 text-white rounded-2xl hover:bg-slate-800 transition-all dark:bg-gray-700 dark:border-gray-900 dark:text-gray-300 dark:hover:bg-gray-500"
                 >
                     <FaPrint size={14} />
                     <span className="font-bold text-sm">Print Receipt</span>
@@ -49,7 +49,7 @@ export default function ReceiptPage() {
             {/* MAIN RECEIPT */}
             <div
                 ref={receiptRef}
-                className="max-w-3xl mx-auto bg-white rounded-4xl border border-slate-100 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.04)] overflow-hidden print:shadow-none print:border-none"
+                className="max-w-3xl mx-auto bg-white rounded-4xl border border-slate-100 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.04)] overflow-hidden print:shadow-none print:border-none dark:bg-gray-700 dark:border-gray-900 dark:text-gray-300"
             >
                 {/* Top Branding Section */}
                 <div className="p-12 border-b border-dashed border-slate-100 flex justify-between items-start">
@@ -81,20 +81,20 @@ export default function ReceiptPage() {
                             <div>
                                 <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 mb-4">Customer Details</h4>
                                 <div className="space-y-1">
-                                    <p className="text-lg font-bold text-slate-900">{booking.user?.name}</p>
-                                    <p className="text-sm text-slate-500">{booking.user?.email}</p>
-                                    <p className="text-sm text-slate-500">{booking.user?.phone}</p>
+                                    <p className="text-lg font-bold text-slate-900 dark:text-gray-300">{booking.user?.name}</p>
+                                    <p className="text-sm text-slate-500 dark:text-gray-300">{booking.user?.email}</p>
+                                    <p className="text-sm text-slate-500 dark:text-gray-300">{booking.user?.phone}</p>
                                 </div>
                             </div>
 
                             <div>
-                                <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 mb-4">Appointment Info</h4>
+                                <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 mb-4 dark:text-gray-300">Appointment Info</h4>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="p-4 bg-slate-50 rounded-2xl">
+                                    <div className="p-4 bg-slate-50 rounded-2xl dark:bg-gray-600 dark:border-gray-900 dark:text-gray-300">
                                         <p className="text-[9px] uppercase font-bold text-slate-400 mb-1">Date</p>
                                         <p className="text-sm font-bold">{new Date(booking.date).toISOString().split('T')[0]}</p>
                                     </div>
-                                    <div className="p-4 bg-slate-50 rounded-2xl">
+                                    <div className="p-4 bg-slate-50 rounded-2xl dark:bg-gray-600 dark:border-gray-900 dark:text-gray-300">
                                         <p className="text-[9px] uppercase font-bold text-slate-400 mb-1">Time</p>
                                         <p className="text-sm font-bold">{booking.time}</p>
                                     </div>
@@ -103,29 +103,29 @@ export default function ReceiptPage() {
                         </div>
 
                         {/* Right: Summary */}
-                        <div className="bg-slate-50 rounded-4xl p-8 space-y-6">
+                        <div className="bg-slate-50 rounded-4xl p-8 space-y-6 dark:bg-gray-600 dark:border-gray-900 dark:text-gray-300">
                             <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Order Summary</h4>
 
                             <div className="flex justify-between items-start border-b border-slate-200 pb-4">
                                 <div>
-                                    <p className="font-bold text-slate-900">{booking.service?.name}</p>
-                                    <p className="text-[11px] text-slate-500 mt-1">With {booking.staff?.name}</p>
+                                    <p className="font-bold text-slate-900 dark:text-gray-300">{booking.service?.name}</p>
+                                    <p className="text-[11px] text-slate-500 mt-1 dark:text-gray-300">With {booking.staff?.name}</p>
                                 </div>
-                                <p className="font-bold">${booking.service?.price}</p>
+                                <p className="font-bold dark:text-gray-300 ">${booking.service?.price}</p>
                             </div>
 
                             <div className="space-y-3">
-                                <div className="flex justify-between text-xs text-slate-500">
+                                <div className="flex justify-between text-xs text-slate-500 dark:text-gray-300">
                                     <span>Base Rate</span>
                                     <span>${booking.service?.price}</span>
                                 </div>
-                                <div className="flex justify-between text-xs text-slate-500">
+                                <div className="flex justify-between text-xs text-slate-500 dark:text-gray-300">
                                     <span>Platform Fee</span>
                                     <span>$0.00</span>
                                 </div>
-                                <div className="flex justify-between pt-4 border-t border-slate-200">
-                                    <span className="text-sm font-bold text-slate-900">Total Paid</span>
-                                    <span className="text-2xl font-serif font-bold text-slate-900">${booking.service?.price}</span>
+                                <div className="flex justify-between pt-4 border-t border-slate-200 dark:border-gray-900 dark:text-gray-300">
+                                    <span className="text-sm font-bold text-slate-900 dark:text-gray-300">Total Paid</span>
+                                    <span className="text-2xl font-serif font-bold text-slate-900 dark:text-gray-300">${booking.service?.price}</span>
                                 </div>
                             </div>
                         </div>
@@ -133,12 +133,12 @@ export default function ReceiptPage() {
 
                     {/* Footer Branding */}
                     <div className="mt-20 pt-10 border-t border-slate-100 flex flex-col items-center">
-                        <p className="text-xs text-slate-400 mb-6 max-w-sm text-center leading-relaxed font-medium">
+                        <p className="text-xs text-slate-400 mb-6 max-w-sm text-center leading-relaxed font-medium dark:text-gray-300">
                             Please present this receipt upon arrival at <span>{booking.business.name}</span>. We look forward to seeing you.
                         </p>
                         <div className="flex gap-8 items-center opacity-30 grayscale">
-                            <span className="text-[10px] font-bold tracking-widest uppercase italic">Verified Booking</span>
-                            <span className="text-[10px] font-bold tracking-widest uppercase italic">Secure SSL</span>
+                            <span className="text-[10px] font-bold tracking-widest uppercase italic dark:text-gray-300">Verified Booking</span>
+                            <span className="text-[10px] font-bold tracking-widest uppercase italic dark:text-gray-300">Secure SSL</span>
                         </div>
                     </div>
                 </div>

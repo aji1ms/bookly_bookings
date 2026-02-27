@@ -15,7 +15,7 @@ export default function SuccessPage() {
     const booking = location.state?.booking as SuccessBooking;
 
     return (
-        <div className="min-h-screen bg-white flex items-center justify-center p-6 antialiased overflow-hidden">
+        <div className="min-h-screen bg-white flex items-center justify-center p-6 antialiased overflow-hidden dark:bg-gray-900">
 
             <div className="fixed inset-0 pointer-events-none overflow-hidden">
                 {[...Array(12)].map((_, i) => (
@@ -70,8 +70,8 @@ export default function SuccessPage() {
                 </div>
 
                 <div className="space-y-2" style={{ animation: "slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both" }}>
-                    <h1 className="text-4xl md:text-5xl font-serif text-gray-900">Booking Confirmed!</h1>
-                    <p className="text-gray-500 font-medium">Your appointment has been successfully scheduled.</p>
+                    <h1 className="text-4xl md:text-5xl font-serif text-gray-900 dark:text-gray-300">Booking Confirmed!</h1>
+                    <p className="text-gray-500 font-medium dark:text-gray-300">Your appointment has been successfully scheduled.</p>
                     {booking?.bookingNumber && (
                         <p className="text-sm font-bold text-emerald-600 tracking-widest uppercase">
                             {booking.bookingNumber}
@@ -80,38 +80,38 @@ export default function SuccessPage() {
                 </div>
 
                 <div
-                    className="bg-[#FAFAFA] border border-gray-100 rounded-[2.5rem] p-8 text-left space-y-6 shadow-sm"
+                    className="bg-[#FAFAFA] border border-gray-100 rounded-[2.5rem] p-8 text-left space-y-6 shadow-sm dark:bg-gray-800 dark:border-gray-700"
                     style={{ animation: "slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both" }}
                 >
                     <div className="flex justify-between items-start">
                         <div>
-                            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Service</p>
-                            <h3 className="text-xl font-bold text-gray-900">{booking?.service?.name}</h3>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1 dark:text-gray-300">Service</p>
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-300">{booking?.service?.name}</h3>
                         </div>
                         <div className="text-right">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Amount Paid</p>
-                            <h3 className="text-xl font-serif text-gray-900">$ {booking?.service?.price}</h3>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1 dark:text-gray-300">Amount Paid</p>
+                            <h3 className="text-xl font-serif text-gray-900 dark:text-gray-300">$ {booking?.service?.price}</h3>
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-200/50">
                         <div className="flex items-center gap-3" style={{ animation: "slideRight 0.5s ease 0.5s both" }}>
-                            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm text-gray-400">
+                            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm text-gray-400 dark:bg-gray-700 dark:border-gray-700">
                                 <FaCalendarAlt size={14} />
                             </div>
                             <div>
-                                <p className="text-[9px] font-black uppercase tracking-tighter text-gray-400">Date</p>
-                                <p className="text-sm font-bold">{booking?.date?.split("T")[0]}</p>
+                                <p className="text-[9px] font-black uppercase tracking-tighter text-gray-400 dark:text-gray-300">Date</p>
+                                <p className="text-sm font-bold dark:text-gray-300">{booking?.date?.split("T")[0]}</p>
                             </div>
                         </div>
 
                         <div className="flex items-center gap-3" style={{ animation: "slideRight 0.5s ease 0.6s both" }}>
-                            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm text-emerald-500">
+                            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm text-emerald-500 dark:bg-gray-700 dark:border-gray-900">
                                 <FaCheckCircle size={14} />
                             </div>
                             <div>
-                                <p className="text-[9px] font-black uppercase tracking-tighter text-gray-400">Time</p>
-                                <p className="text-sm font-bold text-emerald-600">{booking?.time}</p>
+                                <p className="text-[9px] font-black uppercase tracking-tighter text-gray-400 dark:text-gray-300">Time</p>
+                                <p className="text-sm font-bold text-emerald-600 dark:text-gray-300">{booking?.time}</p>
                             </div>
                         </div>
                     </div>
@@ -123,15 +123,15 @@ export default function SuccessPage() {
                 >
                     <button
                         onClick={() => navigate("/services")}
-                        className="flex cursor-pointer items-center justify-center gap-2 bg-gray-900 text-white py-5 rounded-2xl font-bold hover:bg-black transition-all hover:-translate-y-1 active:translate-y-0 shadow-lg shadow-gray-200"
+                        className="flex cursor-pointer items-center justify-center gap-2 bg-gray-900 text-white py-5 rounded-2xl font-bold hover:bg-black transition-all hover:-translate-y-1 active:translate-y-0 dark:bg-gray-700 dark:border-gray-900"
                     >
                         <FaPlus size={12} /> Book Another
                     </button>
                     <button
                         onClick={() => navigate("/booking/receipt", { state: { booking } })}
-                        className="flex cursor-pointer items-center justify-center gap-2 bg-white border border-gray-200 text-gray-900 py-5 rounded-2xl font-bold hover:bg-gray-50 transition-all hover:-translate-y-1 active:translate-y-0"
+                        className="flex cursor-pointer items-center justify-center gap-2 bg-white border border-gray-200 text-gray-900 py-5 rounded-2xl font-bold hover:bg-gray-50 transition-all hover:-translate-y-1 active:translate-y-0 dark:bg-gray-700 dark:border-gray-900 dark:text-gray-300 dark:hover:bg-gray-500"
                     >
-                        <FaReceipt size={12} className="text-gray-400" /> View Receipt
+                        <FaReceipt size={12} className="text-gray-400 dark:text-gray-300" /> View Receipt
                     </button>
                 </div>
 

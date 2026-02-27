@@ -5,10 +5,10 @@ import { IStaff } from "../../Redux/slices/staffSlice";
 export default function StaffSelection({ staff, staffLoading, selectedStaffId, onSelect }: 
     { staff: IStaff[], staffLoading: boolean, selectedStaffId: string | undefined, onSelect: (staff: IStaff) => void }) {
     return (
-        <section className="animate-fade-up border-t border-gray-100 pt-12">
+        <section className="animate-fade-up border-t border-gray-100 pt-12 dark:border-gray-600">
             <div className="flex items-center gap-3 mb-8">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-900 text-white text-xs font-bold">2</span>
-                <h2 className="text-2xl font-semibold tracking-tight">Select Professional</h2>
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-900 text-white text-xs font-bold dark:bg-gray-100 dark:text-gray-900">2</span>
+                <h2 className="text-2xl font-semibold tracking-tight dark:text-gray-100">Select Professional</h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -19,12 +19,12 @@ export default function StaffSelection({ staff, staffLoading, selectedStaffId, o
                     <>
                         <button
                             onClick={() => onSelect({ _id: "", name: "", role: "Professional" }as IStaff)}
-                            className={`p-6 border-2 rounded-2xl cursor-pointer transition-all text-center flex flex-col items-center ${selectedStaffId === "any"
-                                ? "border-gray-900 bg-white ring-1 ring-gray-900"
-                                : "border-gray-100 bg-white hover:border-gray-300"
+                            className={`p-6 border-2 rounded-2xl cursor-pointer transition-all text-center flex flex-col items-center dark:bg-gray-700 ${selectedStaffId === ""
+                                ? "border-gray-900 bg-white ring-1 ring-gray-900 dark:border-gray-100 dark:ring-gray-100"
+                                : "border-gray-100 bg-white hover:border-gray-300 dark:border-gray-900"
                                 }`}
                         >
-                            <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mb-4 text-gray-500">
+                            <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mb-4 text-gray-500 dark:bg-gray-900 dark:text-gray-100">
                                 <FaUserFriends size={24} />
                             </div>
                             <p className="font-bold text-sm">Any Professional</p>
@@ -35,9 +35,9 @@ export default function StaffSelection({ staff, staffLoading, selectedStaffId, o
                             <button
                                 key={person._id}
                                 onClick={() => onSelect(person)}
-                                className={`p-6 cursor-pointer border-2 rounded-2xl transition-all text-center flex flex-col items-center ${selectedStaffId === person._id
-                                    ? "border-gray-900 bg-white ring-1 ring-gray-900"
-                                    : "border-gray-100 bg-white hover:border-gray-300"
+                                className={`p-6 cursor-pointer border-2 rounded-2xl transition-all text-center flex flex-col items-center dark:bg-gray-700 ${selectedStaffId === person._id
+                                    ? "border-gray-900 bg-white ring-1 ring-gray-900 dark:border-gray-100 dark:ring-gray-100"
+                                    : "border-gray-100 bg-white hover:border-gray-300 dark:border-gray-900" 
                                     }`}
                             >
                                 <div className="w-14 h-14 rounded-full bg-gray-900 text-white flex items-center justify-center mb-4 text-lg font-bold">
