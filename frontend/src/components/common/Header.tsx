@@ -106,7 +106,7 @@ function Header() {
                             {theme === "dark" ? <HiSun size={20} /> : <HiMoon size={20} />}
                         </button>
 
-                        <Link to="/services" className="inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-gray-900 dark:text-gray-900 dark:bg-white px-5 py-2.5 rounded-full no-underline hover:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white transition-all">
+                        <Link to="/services" className="inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-gray-900 dark:text-gray-900 dark:bg-white px-5 py-2.5 rounded-full  border border-gray-900 no-underline hover:bg-gray-800 dark:hover:bg-gray-900 dark:hover:text-white dark:border-gray-400 transition-all">
                             Book Now
                             <FaArrowRight size={15} />
                         </Link>

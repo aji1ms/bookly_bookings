@@ -211,7 +211,7 @@ export default function PaymentPage() {
 
                         <button
                             type="submit"
-                            className="w-full cursor-pointer bg-gray-900 text-white py-6 rounded-3xl font-bold text-lg hover:bg-black transition-all shadow-xl hover:-translate-y-1 flex items-center justify-center gap-3 group dark:bg-white dark:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                            className="w-full cursor-pointer bg-gray-900 text-white py-6 rounded-3xl font-bold text-lg hover:bg-black transition-all shadow-xl hover:-translate-y-1 flex items-center justify-center gap-3 group dark:bg-white dark:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white dark:border-gray-400 border border-gray-900"
                         >
                             {loading ? (
                                 <div className="flex items-center justify-center gap-2">

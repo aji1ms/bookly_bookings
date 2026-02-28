@@ -192,7 +192,7 @@ export default function Checkout() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full cursor-pointer bg-gray-900 text-white py-6 rounded-3xl font-bold text-lg hover:bg-black transition-all shadow-xl hover:-translate-y-1 active:translate-y-0 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                            className="w-full cursor-pointer bg-gray-900 text-white py-6 rounded-3xl font-bold text-lg border border-gray-900 hover:bg-black transition-all shadow-xl hover:-translate-y-1 active:translate-y-0 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white dark:border-gray-400"
                         >
                             {loading ? (
                                 <div className="flex items-center justify-center gap-2">

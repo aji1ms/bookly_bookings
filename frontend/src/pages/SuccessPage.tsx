@@ -123,13 +123,13 @@ export default function SuccessPage() {
                 >
                     <button
                         onClick={() => navigate("/services")}
-                        className="flex cursor-pointer items-center justify-center gap-2 bg-gray-900 text-white py-5 rounded-2xl font-bold hover:bg-black transition-all hover:-translate-y-1 active:translate-y-0 dark:bg-gray-700 dark:border-gray-900"
+                        className="flex cursor-pointer items-center justify-center gap-2 bg-gray-900 text-white py-5 rounded-2xl font-bold hover:bg-black transition-all hover:-translate-y-1 active:translate-y-0 dark:bg-gray-700 dark:border-gray-900 border border-gray-900 dark:hover:bg-gray-900 dark:hover:border-gray-400"
                     >
                         <FaPlus size={12} /> Book Another
                     </button>
                     <button
                         onClick={() => navigate("/booking/receipt", { state: { booking } })}
-                        className="flex cursor-pointer items-center justify-center gap-2 bg-white border border-gray-200 text-gray-900 py-5 rounded-2xl font-bold hover:bg-gray-50 transition-all hover:-translate-y-1 active:translate-y-0 dark:bg-gray-700 dark:border-gray-900 dark:text-gray-300 dark:hover:bg-gray-500"
+                        className="flex cursor-pointer items-center justify-center gap-2 bg-white border border-gray-200 text-gray-900 py-5 rounded-2xl font-bold hover:bg-gray-50 transition-all hover:-translate-y-1 active:translate-y-0 dark:bg-gray-700 dark:border-gray-900 dark:text-gray-300 dark:hover:bg-gray-900 dark:hover:border-gray-400"
                     >
                         <FaReceipt size={12} className="text-gray-400 dark:text-gray-300" /> View Receipt
                     </button>
