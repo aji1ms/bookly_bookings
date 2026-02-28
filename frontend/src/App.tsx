@@ -9,12 +9,14 @@ import ReceiptPage from "./pages/ReceiptPage";
 import AboutPage from "./pages/About";
 import Checkout from "./pages/Checkout";
 import ScrollToTop from "./helper/ScrollToTop";
+import CookieBanner from "./components/Ui/CookieBanner";
 
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Toaster position="top-center" reverseOrder={false} />
+      <CookieBanner />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/services" element={<ServicesPage />} />
