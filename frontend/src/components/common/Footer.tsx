@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface IPlatform {
     id: number;
@@ -18,21 +19,22 @@ interface ISection {
 }
 
 function Footer() {
+    const { t } = useTranslation();
     const platform: IPlatform[] = [
-        { id: 0, label: "Services", href: "/services" },
-        { id: 1, label: "How it works", href: "/#how-it-works" },
-        { id: 2, label: "About", href: "/about" }
+        { id: 0, label: t("footer.links.services"), href: "/services" },
+        { id: 1, label: t("footer.links.how_it_works"), href: "/#how-it-works" },
+        { id: 2, label: t("footer.links.about"), href: "/about" }
     ]
 
     const legals: ILegals[] = [
-        { id: 0, label: "Legal", href: "#" },
-        { id: 1, label: "Terms & Conditions", href: "#" },
-        { id: 2, label: "Cookie Policy", href: "#" }
+        { id: 0, label: t("footer.sections.legal"), href: "#" },
+        { id: 1, label: t("footer.links.terms"), href: "#" },
+        { id: 2, label: t("footer.links.cookie_policy"), href: "#" }
     ]
 
     const footerSections: ISection[] = [
-        { title: "Platform", links: platform },
-        { title: "Legal", links: legals }
+        { title: t("footer.sections.platform"), links: platform },
+        { title: t("footer.sections.legal"), links: legals }
     ];
     return (
         <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 px-6 pt-12 pb-8" role="contentinfo">
@@ -43,7 +45,7 @@ function Footer() {
                             <span className="font-serif-display text-lg text-gray-900 dark:text-white">Bookly</span>
                         </a>
                         <p className="text-sm text-gray-400 max-w-xs leading-snug">
-                            Thoughtful booking for the modern professional. Calm by design.
+                            {t("footer.description")}
                         </p>
                     </div>
                     {/* Nav columns */}
@@ -67,13 +69,13 @@ function Footer() {
                                 </ul>
                             </div>
                         ))}
-                    </div>
+                    </div> 
                 </div>
 
                 <div className="border-t border-gray-200 pt-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-                    <p className="text-xs text-gray-400">© 2026 Bookly. All rights reserved.</p>
+                    <p className="text-xs text-gray-400">{t("footer.rights")}</p>
                     <div className="flex flex-wrap gap-4">
-                        {["Accessibility", "Sitemap", "Contact"].map((item) => (
+                        {[t("footer.links.accessibility"), t("footer.links.sitemap"), t("footer.links.contact")].map((item) => (
                             <Link key={item} to="#" className="text-xs text-gray-400 no-underline hover:text-gray-600 transition-colors duration-200">
                                 {item}
                             </Link>

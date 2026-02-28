@@ -1,0 +1,107 @@
+{
+    "translation": {
+        "nav": {
+            "services": "Dienstleistungen",
+            "about": "Über uns",
+            "book_now": "Jetzt Buchen"
+        },
+        "hero": {
+            "badge": "Premium Terminbuchung",
+            "title_part1": "Buchen Sie Ihre",
+            "title_part2": "nächste Sitzung",
+            "title_italic": "mühelos",
+            "description": "Vereinbaren Sie Termine mit vertrauenswürdigen Fachleuten — in Sekunden. Ihre Zeit ist wertvoll.",
+            "cta_primary": "Jetzt starten",
+            "cta_secondary": "Dienste ansehen",
+            "stats_count": "2.400+ Sitzungen gebucht",
+            "stats_text": "Diesen Monat von Profis geschätzt",
+            "testimonial": "Bookly hat die Verwaltung meiner Kundentermine revolutioniert. Pure Eleganz.",
+            "testimonial_author": "Sarah Jenkins, Design-Beraterin",
+            "sync_status": "Echtzeit",
+            "sync_label": "Sofort-Sync",
+            "rating_label": "Durchschn. Bewertung"
+        },
+        "stats": {
+            "sessions": "Monatlich gebuchte Sitzungen",
+            "satisfaction": "Kundenzufriedenheit",
+            "professionals": "Verifizierte Experten",
+            "booking_time": "Durchschnittliche Buchungszeit"
+        },
+        "recent_businesses": {
+            "title": "Neu beigetretene Unternehmen",
+            "subtitle": "Die neuesten Betriebe auf der Plattform",
+            "see_all": "Alle ansehen",
+            "view_all_mobile": "Alle Unternehmen anzeigen",
+            "rating_new": "Neu",
+            "starting_price": "{{price}} €"
+        },
+        "how_it_works": {
+            "badge": "Der Ablauf",
+            "title_main": "Drei Schritte zu",
+            "title_sub": "Ihrem nächsten Termin",
+            "step1": {
+                "title": "Service wählen",
+                "desc": "Durchsuchen Sie unseren Katalog für Wellness-, Beratungs- und Heimdienste. Filtern Sie nach Typ oder Verfügbarkeit."
+            },
+            "step2": {
+                "title": "Zeit auswählen",
+                "desc": "Sehen Sie die Verfügbarkeit in Echtzeit und wählen Sie einen Slot. Kein Hin- und Hergeschreibe mehr."
+            },
+            "step3": {
+                "title": "Ankommen & Entspannen",
+                "desc": "Erhalten Sie sofort eine Bestätigung. In den Kalender eintragen und einfach erscheinen. Wir erledigen den Rest."
+            }
+        },
+        "testimonials": {
+            "badge": "Kundenstimmen",
+            "title_main": "Menschen, die",
+            "title_sub": "gewechselt haben",
+            "items": [
+                {
+                    "quote": "Die Buchungserfahrung ist die reibungsloseste, die ich je erlebt habe. Sauber, schnell und es funktioniert einfach.",
+                    "name": "Amara Jensen",
+                    "role": "Kreativdirektorin",
+                    "initials": "AJ"
+                },
+                {
+                    "quote": "Endlich eine Plattform, die meine Zeit respektiert. Gebucht in 90 Sekunden, keine unnötigen Schritte.",
+                    "name": "Theo Marchetti",
+                    "role": "Produktmanager",
+                    "initials": "TM"
+                },
+                {
+                    "quote": "Die Profis auf dieser Plattform sind außergewöhnlich. Hochgradig kuratiert und absolut zuverlässig.",
+                    "name": "Lena Park",
+                    "role": "Architektin",
+                    "initials": "LP"
+                }
+            ]
+        },
+        "cta": {
+            "badge": "Bereit, wenn Sie es sind",
+            "title_main": "Ihr nächster Termin ist nur",
+            "title_italic": "einen Klick entfernt",
+            "description": "Schließen Sie sich Tausenden an, die ihre Buchungen vereinfacht haben. Kein Konto erforderlich.",
+            "btn_primary": "Erste Sitzung buchen",
+            "btn_secondary": "Alle Dienste anzeigen"
+        },
+        "footer": {
+            "description": "Durchdachte Buchungen für moderne Profis. Design trifft Ruhe.",
+            "sections": {
+                "platform": "Plattform",
+                "legal": "Rechtliches"
+            },
+            "links": {
+                "services": "Dienstleistungen",
+                "how_it_works": "So funktioniert's",
+                "about": "Über uns",
+                "terms": "AGB",
+                "cookie_policy": "Cookie-Richtlinie",
+                "accessibility": "Barrierefreiheit",
+                "sitemap": "Sitemap",
+                "contact": "Kontakt"
+            },
+            "rights": "© 2026 Bookly. Alle Rechte vorbehalten."
+        }
+    }
+}

@@ -3,6 +3,8 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { HiMoon, HiSun } from "react-icons/hi2";
 import { useTheme } from "../Ui/ThemeContext";
+import LanguageSwitcher from "../Ui/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 interface NavLink {
     id: number;
@@ -12,6 +14,7 @@ interface NavLink {
 }
 
 function Header() {
+    const { t } = useTranslation();
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const { theme, toggleTheme } = useTheme();
 
@@ -27,8 +30,8 @@ function Header() {
     }, [menuOpen]);
 
     const navlinks: NavLink[] = [
-        { id: 0, label: "Services", url: "/services", type: "route" },
-        { id: 1, label: "About", url: "/about", type: "route" }
+        { id: 0, label: t("nav.services"), url: "/services", type: "route" },
+        { id: 1, label: t("nav.about"), url: "/about", type: "route" }
     ];
 
     return (
@@ -70,6 +73,15 @@ function Header() {
                 </ul>
 
                 <div className="pt-8 flex flex-col gap-4">
+                    <div className="flex items-center justify-between">
+                        <LanguageSwitcher />
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 rounded-lg bg-transparent border-none cursor-pointer text-gray-900 dark:text-white dark:hover:bg-gray-800 flex items-center justify-center"
+                        >
+                            {theme === "dark" ? <HiSun size={20} /> : <HiMoon size={20} />}
+                        </button>
+                    </div>
                     <Link to="/services" className="w-full text-center py-4 bg-gray-900 text-white dark:text-gray-900 dark:bg-white rounded-xl text-base font-semibold no-underline shadow-lg">
                         Book Now
                     </Link>
@@ -99,6 +111,7 @@ function Header() {
                     </ul>
 
                     <div className="hidden md:flex items-center gap-3 shrink-0">
+                        <LanguageSwitcher />
                         <button
                             onClick={toggleTheme}
                             className="p-2 rounded-lg bg-transparent border-none cursor-pointer text-gray-600 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800 transition-colors flex items-center justify-center"

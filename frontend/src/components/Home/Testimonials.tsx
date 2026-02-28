@@ -1,4 +1,5 @@
 import { useTheme } from "../Ui/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 interface ITestimonials {
     quote: string;
@@ -9,21 +10,18 @@ interface ITestimonials {
 }
 
 function Testimonials() {
+    const { t } = useTranslation();
     const { theme } = useTheme();
 
-    const testimonials: ITestimonials[] = [
-        { quote: "The booking experience is the most frictionless I've encountered. Clean, fast, and it just works.", name: "Amara Jensen", role: "Creative Director", initials: "AJ", delay: "0ms" },
-        { quote: "Finally a service platform that respects my time. Booked in 90 seconds, no unnecessary steps.", name: "Theo Marchetti", role: "Product Manager", initials: "TM", delay: "80ms" },
-        { quote: "The professionals on this platform are exceptional. Highly curated, deeply reliable.", name: "Lena Park", role: "Architect", initials: "LP", delay: "160ms" },
-    ];
+    const testimonials = t('testimonials.items', { returnObjects: true }) as ITestimonials[];
 
     return (
         <section className="px-6 py-20 bg-gray-50 dark:bg-gray-900" id="testimonials" aria-label="Customer testimonials">
             <div className="max-w-6xl mx-auto">
                 <div className="mb-14">
-                    <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">Testimonials</p>
+                    <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">{t("testimonials.badge")}</p>
                     <h2 className="font-serif-display text-4xl md:text-5xl font-normal text-gray-900 dark:text-white leading-tight tracking-tight">
-                        People who've<br />made the switch
+                        {t("testimonials.title_main")}<br />{t("testimonials.title_sub")}
                     </h2>
                 </div>
 
@@ -45,7 +43,7 @@ function Testimonials() {
 
                             {/* Quote */}
                             <p className="text-sm text-gray-700 dark:text-gray-400 leading-relaxed italic flex-1">
-                                "{t.quote}"
+                                {t.quote}
                             </p>
 
                             {/* Author Info */}

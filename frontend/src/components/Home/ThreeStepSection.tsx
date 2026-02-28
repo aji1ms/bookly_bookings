@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 interface ISteps {
     n: string;
     title: string;
@@ -5,18 +7,20 @@ interface ISteps {
 }
 
 function ThreeStepSection() {
+    const { t } = useTranslation();
+
     const steps: ISteps[] = [
-        { n: "01", title: "Choose your service", desc: "Browse our curated catalog of wellness, consultation, and home services. Filter by type, duration, or availability." },
-        { n: "02", title: "Pick your time", desc: "View real-time availability and select a slot that works for you. No back-and-forth, no guessing." },
-        { n: "03", title: "Show up & relax", desc: "Receive a confirmation instantly. Add it to your calendar, then simply show up. We handle the rest." },
+        { n: "01", title: t("how_it_works.step1.title"), desc: t("how_it_works.step1.desc") },
+        { n: "02", title: t("how_it_works.step2.title"), desc: t("how_it_works.step2.desc") },
+        { n: "03", title: t("how_it_works.step3.title"), desc: t("how_it_works.step3.desc") },
     ]
     return (
         <section className="dark:bg-gray-900 px-6 py-20" id="how-it-works" aria-label="How it works">
             <div className="max-w-6xl mx-auto">
                 <div className="mb-14">
-                    <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">The process</p>
+                    <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">{t("how_it_works.badge")}</p>
                     <h2 className="font-serif-display text-4xl md:text-5xl font-normal text-gray-900 dark:text-white leading-tight tracking-tight">
-                        Three steps to<br />your next session
+                        {t("how_it_works.title_main")}<br />{t("how_it_works.title_sub")}
                     </h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3">

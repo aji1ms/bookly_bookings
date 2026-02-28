@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 function HeroSection() {
+    const { t } = useTranslation();
     const cardImage = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800";
     return (
         <section className="dark:bg-gray-900 relative overflow-hidden px-6 py-24 md:py-32 flex items-center" style={{ minHeight: "calc(90vh - 68px)" }} aria-label="Hero">
@@ -19,28 +21,28 @@ function HeroSection() {
                 <div className="max-w-xl">
                     <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gray-500 bg-gray-100 border border-gray-200 dark:text-white dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1.5 rounded-full mb-7 animate-fade-up">
                         <div className="w-1.5 h-1.5 rounded-full bg-gray-400" />
-                        Premium Appointment Booking
+                        {t("hero.badge")}
                     </div>
                     <h1
                         className="font-serif-display font-normal leading-none tracking-tight text-gray-900 dark:text-white mb-6 animate-fade-up"
                         style={{ fontSize: "clamp(42px, 6vw, 80px)", animationDelay: "100ms" }}
                     >
-                        Book your next<br />
-                        session <em className="text-gray-400">effortlessly</em>
+                        {t("hero.title_part1")}<br />
+                        {t("hero.title_part2")} <em className="text-gray-400">{t("hero.title_italic")}</em>
                     </h1>
 
                     <p className="text-lg text-gray-500 leading-relaxed max-w-md mb-11 animate-fade-up" style={{ animationDelay: "200ms" }}>
-                        Schedule services with trusted, vetted professionals — in seconds, not minutes. Your time deserves better.
+                        {t("hero.description")}
                     </p>
 
                     {/* CTAs */}
                     <div className="flex flex-wrap items-center gap-4 mb-14 animate-fade-up" style={{ animationDelay: "300ms" }}>
                         <Link to={"/services"} className="inline-flex items-center justify-center gap-2 text-base font-semibold text-white bg-gray-900 dark:text-gray-900 dark:bg-white dark:hover:bg-gray-700 dark:hover:text-white px-9 py-4 rounded-full no-underline hover:bg-gray-800 hover:-translate-y-px hover:shadow-xl transition-all duration-200 w-full sm:w-auto">
-                            Get started
+                            {t("hero.cta_primary")}
                             <FaArrowRight />
                         </Link>
                         <Link to={"/services"} className="inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-900 border border-gray-200 dark:text-gray-900 dark:bg-white dark:hover:bg-gray-700 dark:hover:text-white px-7 py-3.5 rounded-full no-underline hover:border-gray-500 hover:bg-gray-50 hover:-translate-y-px transition-all duration-200 w-full sm:w-auto">
-                            View services
+                            {t("hero.cta_secondary")}
                         </Link>
                     </div>
 
@@ -58,8 +60,8 @@ function HeroSection() {
                             ))}
                         </div>
                         <div className="text-sm text-gray-500 leading-snug">
-                            <strong className="block text-gray-900 dark:text-white font-semibold">2,400+ sessions booked</strong>
-                            Trusted by professionals this month
+                            <strong className="block text-gray-900 dark:text-white font-semibold">{t("hero.stats_count")}</strong>
+                            {t("hero.stats_text")}
                         </div>
                     </div>
                 </div>
@@ -78,8 +80,8 @@ function HeroSection() {
 
                             <div className="absolute bottom-6 left-6 right-6">
                                 <div className="backdrop-blur-md bg-white/10 border border-white/20 p-4 rounded-2xl">
-                                    <p className="text-white text-sm font-medium">"Bookly has transformed how I manage my client sessions. Pure elegance."</p>
-                                    <p className="text-white/70 text-xs mt-2">— Sarah Jenkins, Design Consultant</p>
+                                    <p className="text-white text-sm font-medium">"{t("hero.testimonial")}"</p>
+                                    <p className="text-white/70 text-xs mt-2">{t("hero.testimonial_author")}</p>
                                 </div>
                             </div>
                         </div>
@@ -91,8 +93,8 @@ function HeroSection() {
                                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Real-time</p>
-                                    <p className="text-sm font-semibold text-gray-900">Instant Sync</p>
+                                    <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">{t("hero.sync_status")}</p>
+                                    <p className="text-sm font-semibold text-gray-900">{t("hero.sync_label")}</p>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +108,7 @@ function HeroSection() {
                                         <svg key={i} width="10" height="10" viewBox="0 0 24 24" fill="#fbbf24"><path d="M12 1.7L9.5 8.5H2.4l5.7 4.1-2.2 6.8 6.1-4.4 6.1 4.4-2.2-6.8 5.7-4.1h-7.1L12 1.7z" /></svg>
                                     ))}
                                 </div>
-                                <p className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">Avg. Rating</p>
+                                <p className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">{t("hero.rating_label")}</p>
                             </div>
                         </div>
 

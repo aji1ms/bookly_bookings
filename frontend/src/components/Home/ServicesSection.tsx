@@ -1,8 +1,10 @@
 import { FaStar, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { IBusiness } from "../../Redux/slices/businessSlice";
+import { useTranslation } from "react-i18next";
 
 const RecentBusinesses = ({ services }: { services: IBusiness[] }) => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     if (!services || services.length === 0) return null;
@@ -15,15 +17,15 @@ const RecentBusinesses = ({ services }: { services: IBusiness[] }) => {
                 <div className="flex items-center justify-between mb-8">
                     <div>
                         <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">
-                            Recently joined businesses
+                            {t("recent_businesses.title")}
                         </h2>
-                        <p className="text-sm text-gray-400 mt-1 dark:text-gray-400">Newest establishments on the platform</p>
+                        <p className="text-sm text-gray-400 mt-1 dark:text-gray-400">{t("recent_businesses.subtitle")}</p>
                     </div>
                     <button
                         onClick={() => navigate("/services")}
                         className="group cursor-pointer flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white hover:opacity-70 transition-all shrink-0"
                     >
-                        See all
+                        {t("recent_businesses.see_all")}
                         <FaArrowRight className="group-hover:translate-x-1 transition-transform" size={11} />
                     </button>
                 </div>
@@ -58,7 +60,7 @@ const RecentBusinesses = ({ services }: { services: IBusiness[] }) => {
                                         {service?.name}
                                     </h3>
                                     <span className="text-sm font-bold text-gray-900 dark:text-white shrink-0">
-                                        ${service?.startingPrice}
+                                        {t("recent_businesses.starting_price", { price: service?.startingPrice })}
                                     </span>
                                 </div>
 
@@ -77,9 +79,9 @@ const RecentBusinesses = ({ services }: { services: IBusiness[] }) => {
                 <div className="mt-8 sm:hidden">
                     <button
                         onClick={() => navigate("/services")}
-                        className="w-full py-4 text-center text-sm font-bold text-gray-900 border border-gray-200 rounded-2xl hover:bg-gray-50 transition-colors"
+                        className="w-full py-4 text-center text-sm font-bold text-gray-900 border border-gray-200 rounded-2xl hover:bg-gray-50 transition-colors dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer"
                     >
-                        View all businesses
+                        {t("recent_businesses.view_all_mobile")}
                     </button>
                 </div>
 

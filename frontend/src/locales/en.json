@@ -1,0 +1,107 @@
+{
+    "translation": {
+        "nav": {
+            "services": "Services",
+            "about": "About",
+            "book_now": "Book Now"
+        },
+        "hero": {
+            "badge": "Premium Appointment Booking",
+            "title_part1": "Book your next",
+            "title_part2": "session",
+            "title_italic": "effortlessly",
+            "description": "Schedule services with trusted, vetted professionals — in seconds, not minutes. Your time deserves better.",
+            "cta_primary": "Get started",
+            "cta_secondary": "View services",
+            "stats_count": "2,400+ sessions booked",
+            "stats_text": "Trusted by professionals this month",
+            "testimonial": "Bookly has transformed how I manage my client sessions. Pure elegance.",
+            "testimonial_author": "Sarah Jenkins, Design Consultant",
+            "sync_status": "Real-time",
+            "sync_label": "Instant Sync",
+            "rating_label": "Avg. Rating"
+        },
+        "stats": {
+            "sessions": "Sessions booked monthly",
+            "satisfaction": "Client satisfaction rate",
+            "professionals": "Verified professionals",
+            "booking_time": "Average booking time"
+        },
+        "recent_businesses": {
+            "title": "Recently joined businesses",
+            "subtitle": "Newest establishments on the platform",
+            "see_all": "See all",
+            "view_all_mobile": "View all businesses",
+            "rating_new": "New",
+            "starting_price": "${{price}}"
+        },
+        "how_it_works": {
+            "badge": "The process",
+            "title_main": "Three steps to",
+            "title_sub": "your next session",
+            "step1": {
+                "title": "Choose your service",
+                "desc": "Browse our curated catalog of wellness, consultation, and home services. Filter by type, duration, or availability."
+            },
+            "step2": {
+                "title": "Pick your time",
+                "desc": "View real-time availability and select a slot that works for you. No back-and-forth, no guessing."
+            },
+            "step3": {
+                "title": "Show up & relax",
+                "desc": "Receive a confirmation instantly. Add it to your calendar, then simply show up. We handle the rest."
+            }
+        },
+        "testimonials": {
+            "badge": "Testimonials",
+            "title_main": "People who've",
+            "title_sub": "made the switch",
+            "items": [
+                {
+                    "quote": "The booking experience is the most frictionless I've encountered. Clean, fast, and it just works.",
+                    "name": "Amara Jensen",
+                    "role": "Creative Director",
+                    "initials": "AJ"
+                },
+                {
+                    "quote": "Finally a service platform that respects my time. Booked in 90 seconds, no unnecessary steps.",
+                    "name": "Theo Marchetti",
+                    "role": "Product Manager",
+                    "initials": "TM"
+                },
+                {
+                    "quote": "The professionals on this platform are exceptional. Highly curated, deeply reliable.",
+                    "name": "Lena Park",
+                    "role": "Architect",
+                    "initials": "LP"
+                }
+            ]
+        },
+        "cta": {
+            "badge": "Ready when you are",
+            "title_main": "Your next appointment",
+            "title_italic": "one click away",
+            "description": "Join thousands who've simplified how they book. No account required to get started.",
+            "btn_primary": "Book your first session",
+            "btn_secondary": "View all services"
+        },
+        "footer": {
+            "description": "Thoughtful booking for the modern professional. Calm by design.",
+            "sections": {
+                "platform": "Platform",
+                "legal": "Legal"
+            },
+            "links": {
+                "services": "Services",
+                "how_it_works": "How it works",
+                "about": "About",
+                "terms": "Terms & Conditions",
+                "cookie_policy": "Cookie Policy",
+                "accessibility": "Accessibility",
+                "sitemap": "Sitemap",
+                "contact": "Contact"
+            },
+            "rights": "© 2026 Bookly. All rights reserved."
+        }
+    }
+}

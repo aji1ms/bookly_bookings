@@ -12,8 +12,10 @@ import ServicesSection from "../components/Home/ServicesSection";
 import { getAllBusinessesThunk } from "../Redux/slices/businessSlice";
 import { RecentBusinessesShimmer } from "../components/Shimmer-UI/ServicePageShimmer";
 import { RootState, AppDispatch } from "../Redux/store";
+import { useTranslation } from "react-i18next";
 
 export default function HomePage() {
+    const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
     const { loading, businessData } = useSelector((state: RootState) => state.business);
 
@@ -35,10 +37,10 @@ export default function HomePage() {
                 {/* ── Stats ── */}
                 <section className="px-6 pb-20 dark:bg-gray-900" aria-label="Key statistics">
                     <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-gray-200 border border-gray-200 rounded-2xl overflow-hidden">
-                        <StatCard value={2400} suffix="+" label="Sessions booked monthly" delay="0ms" />
-                        <StatCard value={98} suffix="%" label="Client satisfaction rate" delay="100ms" />
-                        <StatCard value={340} suffix="+" label="Verified professionals" delay="200ms" />
-                        <StatCard value={60} suffix="s" label="Average booking time" delay="300ms" />
+                        <StatCard value={2400} suffix="+" label={t("stats.sessions")} delay="0ms" />
+                        <StatCard value={98} suffix="%" label={t("stats.satisfaction")} delay="100ms" />
+                        <StatCard value={340} suffix="+" label={t("stats.professionals")} delay="200ms" />
+                        <StatCard value={60} suffix="s" label={t("stats.booking_time")} delay="300ms" />
                     </div>
                 </section>
 
